@@ -7,21 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B25A24F2B30AA17005E72CA /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = 0B25A24E2B30AA17005E72CA /* Root */; };
 		0BE329C82B3071D30076500F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE329C72B3071D30076500F /* AppDelegate.swift */; };
-		0BE329CA2B3071D30076500F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE329C92B3071D30076500F /* SceneDelegate.swift */; };
-		0BE329CC2B3071D30076500F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE329CB2B3071D30076500F /* ViewController.swift */; };
 		0BE329D12B3071D50076500F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BE329D02B3071D50076500F /* Assets.xcassets */; };
 		0BE329D42B3071D50076500F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE329D22B3071D50076500F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B25A24B2B30A251005E72CA /* UICommons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UICommons; sourceTree = "<group>"; };
+		0B25A24C2B30A874005E72CA /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
+		0B25A24D2B30A90C005E72CA /* Root */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Root; sourceTree = "<group>"; };
 		0B3DB1CA2B30836600EC61C9 /* Design */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Design; sourceTree = "<group>"; };
 		0B3DB1CC2B30845500EC61C9 /* Animation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Animation; sourceTree = "<group>"; };
 		0BE329C42B3071D30076500F /* RedPlanet Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RedPlanet Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE329C72B3071D30076500F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0BE329C92B3071D30076500F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0BE329CB2B3071D30076500F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0BE329D02B3071D50076500F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BE329D32B3071D50076500F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BE329D52B3071D50076500F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B25A24F2B30AA17005E72CA /* Root in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +41,8 @@
 		0B3DB1C92B30834300EC61C9 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				0B25A24D2B30A90C005E72CA /* Root */,
+				0B25A24C2B30A874005E72CA /* Navigation */,
 				0B25A24B2B30A251005E72CA /* UICommons */,
 				0B3DB1CC2B30845500EC61C9 /* Animation */,
 				0B3DB1CA2B30836600EC61C9 /* Design */,
@@ -77,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				0BE329C72B3071D30076500F /* AppDelegate.swift */,
-				0BE329C92B3071D30076500F /* SceneDelegate.swift */,
-				0BE329CB2B3071D30076500F /* ViewController.swift */,
 				0BE329D02B3071D50076500F /* Assets.xcassets */,
 				0BE329D22B3071D50076500F /* LaunchScreen.storyboard */,
 				0BE329D52B3071D50076500F /* Info.plist */,
@@ -103,6 +103,7 @@
 			);
 			name = "RedPlanet Viewer";
 			packageProductDependencies = (
+				0B25A24E2B30AA17005E72CA /* Root */,
 			);
 			productName = "RedPlanet Viewer";
 			productReference = 0BE329C42B3071D30076500F /* RedPlanet Viewer.app */;
@@ -158,9 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BE329CC2B3071D30076500F /* ViewController.swift in Sources */,
 				0BE329C82B3071D30076500F /* AppDelegate.swift in Sources */,
-				0BE329CA2B3071D30076500F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -287,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -312,7 +311,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -341,7 +340,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,6 +376,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0B25A24E2B30AA17005E72CA /* Root */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Root;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0BE329BC2B3071D30076500F /* Project object */;
 }

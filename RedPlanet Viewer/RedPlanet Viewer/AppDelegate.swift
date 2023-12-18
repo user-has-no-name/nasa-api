@@ -6,25 +6,33 @@
 //
 
 import UIKit
+import Root
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    var appCoordinator : AppCoordinator?
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool { true }
-
-    func application(
-        _ application: UIApplication,
-        configurationForConnecting connectingSceneSession: UISceneSession,
-        options: UIScene.ConnectionOptions
-    ) -> UISceneConfiguration {
-        .init(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    ) -> Bool {
+        setupCoordinator()
     }
+}
 
-    func application(
-        _ application: UIApplication,
-        didDiscardSceneSessions sceneSessions: Set<UISceneSession>
-    ) {}
+private extension AppDelegate {
+
+    func setupCoordinator() -> Bool {
+        window = .init(frame: UIScreen.main.bounds)
+        let navigationController: UINavigationController = .init()
+        appCoordinator = .init(navigationController: navigationController)
+        guard let appCoordinator, let window else { return false }
+
+        appCoordinator.start()
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        return true
+    }
 }
