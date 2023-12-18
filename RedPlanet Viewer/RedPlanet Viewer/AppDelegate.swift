@@ -1,10 +1,5 @@
-//
-//  AppDelegate.swift
-//  RedPlanet Viewer
-//
-//  Created by Oleksandr Zavazhenko on 18/12/2023.
-//
-
+import Dependencies
+import DependencyInjection
 import UIKit
 import Root
 
@@ -18,7 +13,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        setupCoordinator()
+        registerDependencies()
+        return setupCoordinator()
     }
 }
 
@@ -34,5 +30,9 @@ private extension AppDelegate {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         return true
+    }
+
+    func registerDependencies() {
+        DependenciesContainer.registerDependencies()
     }
 }

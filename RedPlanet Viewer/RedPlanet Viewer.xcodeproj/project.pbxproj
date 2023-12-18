@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B25A24F2B30AA17005E72CA /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = 0B25A24E2B30AA17005E72CA /* Root */; };
+		0B29F5162B30F8840072D7B6 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 0B29F5152B30F8840072D7B6 /* Dependencies */; };
+		0B29F5182B30F9010072D7B6 /* DependencyInjection in Frameworks */ = {isa = PBXBuildFile; productRef = 0B29F5172B30F9010072D7B6 /* DependencyInjection */; };
 		0BE329C82B3071D30076500F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE329C72B3071D30076500F /* AppDelegate.swift */; };
 		0BE329D12B3071D50076500F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BE329D02B3071D50076500F /* Assets.xcassets */; };
 		0BE329D42B3071D50076500F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE329D22B3071D50076500F /* LaunchScreen.storyboard */; };
@@ -17,6 +19,8 @@
 		0B25A24B2B30A251005E72CA /* UICommons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UICommons; sourceTree = "<group>"; };
 		0B25A24C2B30A874005E72CA /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
 		0B25A24D2B30A90C005E72CA /* Root */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Root; sourceTree = "<group>"; };
+		0B29F5132B30F6680072D7B6 /* DependencyInjection */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DependencyInjection; sourceTree = "<group>"; };
+		0B29F5142B30F7760072D7B6 /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Dependencies; sourceTree = "<group>"; };
 		0B3DB1CA2B30836600EC61C9 /* Design */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Design; sourceTree = "<group>"; };
 		0B3DB1CC2B30845500EC61C9 /* Animation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Animation; sourceTree = "<group>"; };
 		0BE329C42B3071D30076500F /* RedPlanet Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RedPlanet Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,7 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B29F5182B30F9010072D7B6 /* DependencyInjection in Frameworks */,
 				0B25A24F2B30AA17005E72CA /* Root in Frameworks */,
+				0B29F5162B30F8840072D7B6 /* Dependencies in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +47,8 @@
 		0B3DB1C92B30834300EC61C9 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				0B29F5142B30F7760072D7B6 /* Dependencies */,
+				0B29F5132B30F6680072D7B6 /* DependencyInjection */,
 				0B25A24D2B30A90C005E72CA /* Root */,
 				0B25A24C2B30A874005E72CA /* Navigation */,
 				0B25A24B2B30A251005E72CA /* UICommons */,
@@ -104,6 +112,8 @@
 			name = "RedPlanet Viewer";
 			packageProductDependencies = (
 				0B25A24E2B30AA17005E72CA /* Root */,
+				0B29F5152B30F8840072D7B6 /* Dependencies */,
+				0B29F5172B30F9010072D7B6 /* DependencyInjection */,
 			);
 			productName = "RedPlanet Viewer";
 			productReference = 0BE329C42B3071D30076500F /* RedPlanet Viewer.app */;
@@ -381,6 +391,14 @@
 		0B25A24E2B30AA17005E72CA /* Root */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Root;
+		};
+		0B29F5152B30F8840072D7B6 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Dependencies;
+		};
+		0B29F5172B30F9010072D7B6 /* DependencyInjection */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DependencyInjection;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
