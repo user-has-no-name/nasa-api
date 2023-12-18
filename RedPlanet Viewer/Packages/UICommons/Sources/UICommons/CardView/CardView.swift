@@ -2,7 +2,7 @@ import SwiftUI
 import Design
 
 public struct CardView: View {
-    private let image: Image
+    private let imageURL: URL?
     private let model: CardViewModel
 
     public var body: some View {
@@ -10,10 +10,10 @@ public struct CardView: View {
     }
 
     public init(
-        image: Image,
+        imageURL: URL?,
         model: CardViewModel
     ) {
-        self.image = image
+        self.imageURL = imageURL
         self.model = model
     }
 
@@ -27,7 +27,7 @@ public struct CardView: View {
                 model: model,
                 lineLimitForCamera: 2
             )
-            RoundedRowImage(image)
+            KFImage(url: imageURL)
         }
         .padding(.leading, 16.0)
         .padding([.top, .bottom, .trailing], 10.0)
@@ -45,7 +45,7 @@ public struct CardView: View {
 
 #Preview {
     CardView(
-        image: .init(named: .marsTest),
+        imageURL: .init(string: "https://media.cnn.com/api/v1/images/stellar/prod/210330140016-curiosity-selfie.jpg?q=w_1480,c_fill"),
         model: .init(
             rover: "Curiosity",
             camera: "Front Hazard Avoidance Camera",

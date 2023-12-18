@@ -13,12 +13,14 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "Design"),
+        .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "7.0.0"))
     ],
     targets: [
         .target(
             name: "UICommons",
             dependencies: [
-                .byName(name: "Design")
+                .byName(name: "Design"),
+                .byName(name: "Kingfisher")
             ]
         )
     ]
