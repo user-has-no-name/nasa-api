@@ -15,6 +15,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B25A24B2B30A251005E72CA /* UICommons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UICommons; sourceTree = "<group>"; };
+		0B3DB1CA2B30836600EC61C9 /* Design */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Design; sourceTree = "<group>"; };
+		0B3DB1CC2B30845500EC61C9 /* Animation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Animation; sourceTree = "<group>"; };
 		0BE329C42B3071D30076500F /* RedPlanet Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RedPlanet Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE329C72B3071D30076500F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BE329C92B3071D30076500F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,11 +38,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B3DB1C92B30834300EC61C9 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				0B25A24B2B30A251005E72CA /* UICommons */,
+				0B3DB1CC2B30845500EC61C9 /* Animation */,
+				0B3DB1CA2B30836600EC61C9 /* Design */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		0B3DB1CD2B30861000EC61C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0BE329BB2B3071D30076500F = {
 			isa = PBXGroup;
 			children = (
+				0B3DB1C92B30834300EC61C9 /* Packages */,
 				0BE329C62B3071D30076500F /* RedPlanet Viewer */,
 				0BE329C52B3071D30076500F /* Products */,
+				0B3DB1CD2B30861000EC61C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +102,8 @@
 			dependencies = (
 			);
 			name = "RedPlanet Viewer";
+			packageProductDependencies = (
+			);
 			productName = "RedPlanet Viewer";
 			productReference = 0BE329C42B3071D30076500F /* RedPlanet Viewer.app */;
 			productType = "com.apple.product-type.application";
