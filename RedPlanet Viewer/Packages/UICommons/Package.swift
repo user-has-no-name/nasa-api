@@ -11,9 +11,15 @@ let package = Package(
             targets: ["UICommons"]
         ),
     ],
+    dependencies: [
+        .package(path: "Design"),
+    ],
     targets: [
         .target(
-            name: "UICommons"
+            name: "UICommons",
+            dependencies: [
+                .byName(name: "Design")
+            ]
         )
     ]
 )
