@@ -26,6 +26,7 @@
 		0BBFD5F62B30FED40069EDAC /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
 		0BBFD5F72B310C680069EDAC /* NasaAPIService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NasaAPIService; sourceTree = "<group>"; };
 		0BBFD5F82B313BE60069EDAC /* SecretsManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SecretsManager; sourceTree = "<group>"; };
+		0BBFD5F92B31420E0069EDAC /* Commons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Commons; sourceTree = "<group>"; };
 		0BE329C42B3071D30076500F /* RedPlanet Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RedPlanet Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE329C72B3071D30076500F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BE329D02B3071D50076500F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		0B3DB1C92B30834300EC61C9 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				0BBFD5F92B31420E0069EDAC /* Commons */,
 				0BBFD5F82B313BE60069EDAC /* SecretsManager */,
 				0BBFD5F72B310C680069EDAC /* NasaAPIService */,
 				0BBFD5F62B30FED40069EDAC /* Networking */,
