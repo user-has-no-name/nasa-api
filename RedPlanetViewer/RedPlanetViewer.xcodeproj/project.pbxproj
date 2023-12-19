@@ -27,11 +27,10 @@
 		0BBFD5F72B310C680069EDAC /* NasaAPIService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NasaAPIService; sourceTree = "<group>"; };
 		0BBFD5F82B313BE60069EDAC /* SecretsManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SecretsManager; sourceTree = "<group>"; };
 		0BBFD5F92B31420E0069EDAC /* Commons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Commons; sourceTree = "<group>"; };
-		0BE329C42B3071D30076500F /* RedPlanet Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RedPlanet Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BE329C42B3071D30076500F /* RedPlanetViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedPlanetViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE329C72B3071D30076500F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BE329D02B3071D50076500F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BE329D32B3071D50076500F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0BE329D52B3071D50076500F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				0B3DB1C92B30834300EC61C9 /* Packages */,
-				0BE329C62B3071D30076500F /* RedPlanet Viewer */,
+				0BE329C62B3071D30076500F /* RedPlanetViewer */,
 				0BE329C52B3071D30076500F /* Products */,
 				0B3DB1CD2B30861000EC61C9 /* Frameworks */,
 			);
@@ -86,28 +85,27 @@
 		0BE329C52B3071D30076500F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0BE329C42B3071D30076500F /* RedPlanet Viewer.app */,
+				0BE329C42B3071D30076500F /* RedPlanetViewer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0BE329C62B3071D30076500F /* RedPlanet Viewer */ = {
+		0BE329C62B3071D30076500F /* RedPlanetViewer */ = {
 			isa = PBXGroup;
 			children = (
 				0BE329C72B3071D30076500F /* AppDelegate.swift */,
 				0BE329D02B3071D50076500F /* Assets.xcassets */,
 				0BE329D22B3071D50076500F /* LaunchScreen.storyboard */,
-				0BE329D52B3071D50076500F /* Info.plist */,
 			);
-			path = "RedPlanet Viewer";
+			path = RedPlanetViewer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0BE329C32B3071D30076500F /* RedPlanet Viewer */ = {
+		0BE329C32B3071D30076500F /* RedPlanetViewer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BE329D82B3071D50076500F /* Build configuration list for PBXNativeTarget "RedPlanet Viewer" */;
+			buildConfigurationList = 0BE329D82B3071D50076500F /* Build configuration list for PBXNativeTarget "RedPlanetViewer" */;
 			buildPhases = (
 				0BE329C02B3071D30076500F /* Sources */,
 				0BE329C12B3071D30076500F /* Frameworks */,
@@ -117,14 +115,14 @@
 			);
 			dependencies = (
 			);
-			name = "RedPlanet Viewer";
+			name = RedPlanetViewer;
 			packageProductDependencies = (
 				0B25A24E2B30AA17005E72CA /* Root */,
 				0B29F5152B30F8840072D7B6 /* Dependencies */,
 				0B29F5172B30F9010072D7B6 /* DependencyInjection */,
 			);
 			productName = "RedPlanet Viewer";
-			productReference = 0BE329C42B3071D30076500F /* RedPlanet Viewer.app */;
+			productReference = 0BE329C42B3071D30076500F /* RedPlanetViewer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -142,7 +140,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0BE329BF2B3071D30076500F /* Build configuration list for PBXProject "RedPlanet Viewer" */;
+			buildConfigurationList = 0BE329BF2B3071D30076500F /* Build configuration list for PBXProject "RedPlanetViewer" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -155,7 +153,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0BE329C32B3071D30076500F /* RedPlanet Viewer */,
+				0BE329C32B3071D30076500F /* RedPlanetViewer */,
 			);
 		};
 /* End PBXProject section */
@@ -323,7 +321,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87K6AG3XHL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "RedPlanet Viewer/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = RedPlanetViewer;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -352,7 +349,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87K6AG3XHL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "RedPlanet Viewer/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = RedPlanetViewer;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -375,7 +371,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0BE329BF2B3071D30076500F /* Build configuration list for PBXProject "RedPlanet Viewer" */ = {
+		0BE329BF2B3071D30076500F /* Build configuration list for PBXProject "RedPlanetViewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0BE329D62B3071D50076500F /* Debug */,
@@ -384,7 +380,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0BE329D82B3071D50076500F /* Build configuration list for PBXNativeTarget "RedPlanet Viewer" */ = {
+		0BE329D82B3071D50076500F /* Build configuration list for PBXNativeTarget "RedPlanetViewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0BE329D92B3071D50076500F /* Debug */,
