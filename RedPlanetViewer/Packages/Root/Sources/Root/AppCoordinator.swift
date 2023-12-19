@@ -1,5 +1,6 @@
 import UIKit
 import Navigation
+import RedPlanetViewerApp
 
 public final class AppCoordinator: Coordinator {
     public weak var parentCoordinator: Coordinator?
@@ -11,6 +12,9 @@ public final class AppCoordinator: Coordinator {
     }
 
     public func start() {
-        #warning("Implement as a next step")
+        let dashboardView: DashboardView = .init(viewModel: .init())
+        let hostingController: HostingController = .init(for: dashboardView)
+        navigationController.navigationBar.isHidden = true
+        navigationController.pushViewController(hostingController, animated: true)
     }
 }

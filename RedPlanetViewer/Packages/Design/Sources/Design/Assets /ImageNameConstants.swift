@@ -1,7 +1,7 @@
 import Foundation
 
 public extension ImageNameConstant {
-    // Icons
+
     static let addIcon: Self = "add-icon"
     static let calendarIcon: Self = "calendar-icon"
     static let cameraIcon: Self = "camera-icon"
@@ -10,7 +10,5 @@ public extension ImageNameConstant {
     static let leftIcon: Self = "left-icon"
     static let roverIcon: Self = "rover-icon"
     static let tickIcon: Self = "tick-icon"
-
-    // Images
-    static let marsTest: Self = "mars-test"
+    static let appIcon: Self = "app-icon"
 }

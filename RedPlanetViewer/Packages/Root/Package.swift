@@ -12,13 +12,15 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "Navigation")
+        .package(path: "Navigation"),
+        .package(path: "RedPlanetViewerApp")
     ],
     targets: [
         .target(
             name: "Root",
             dependencies: [
-                .byName(name: "Navigation")
+                .byName(name: "Navigation"),
+                .byName(name: "RedPlanetViewerApp")
             ]
         ),
         .testTarget(
