@@ -1,10 +1,10 @@
 import Foundation
 
-protocol NetworkClient {
+public protocol NetworkClient {
     func sendRequest<T: Decodable>(endpoint: Endpoint) async throws -> T
 }
 
-extension NetworkClient {
+public extension NetworkClient {
 
     func sendRequest<T: Decodable>(endpoint: Endpoint) async throws -> T {
         guard let url = endpoint.buildURL() else { throw NetworkError.invalidURL }

@@ -1,6 +1,6 @@
 import Foundation
 
-protocol Endpoint {
+public protocol Endpoint {
     var scheme: String { get }
     var host: String { get }
     var path: String { get }
@@ -10,7 +10,11 @@ protocol Endpoint {
     var queryItems: Array<URLQueryItem>? { get }
 }
 
-extension Endpoint {
+public extension Endpoint {
+
+    var header: Dictionary<String, String>? { nil }
+    var body: Dictionary<String, String>? { nil }
+    var queryItems: Array<URLQueryItem>? { nil }
 
     func buildURL() -> URL? {
         return PathBuilder.buildURL(for: self)

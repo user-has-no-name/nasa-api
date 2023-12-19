@@ -12,12 +12,16 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "DependencyInjection"),
+        .package(path: "NasaAPIService"),
+        .package(path: "SecretsManager"),
     ],
     targets: [
         .target(
             name: "Dependencies",
             dependencies: [
                 .byName(name: "DependencyInjection"),
+                .byName(name: "NasaAPIService"),
+                .byName(name: "SecretsManager")
             ]
         ),
     ]
