@@ -1,8 +1,11 @@
+import Commons
 import Foundation
 
-public enum RoverCameraAbbreviation: String, CaseIterable {
-    case fhaz, rhaz, mast, chemcam, mahli, mardi, navcam, pancam, minites
+public enum RoverCameraAbbreviation: String, Pickable {
+    case all, fhaz, rhaz, mast, chemcam, mahli, mardi, navcam, pancam, minites
 
+    public var id: Self { self }
+    public static var defaultValue: RoverCameraAbbreviation = .all
     public var fullName: String {
         switch self {
         case .fhaz:
@@ -23,6 +26,8 @@ public enum RoverCameraAbbreviation: String, CaseIterable {
             return "Panoramic Camera"
         case .minites:
             return "Miniature Thermal Emission Spectrometer (Mini-TES)"
+        case .all:
+            return "All"
         }
     }
 }

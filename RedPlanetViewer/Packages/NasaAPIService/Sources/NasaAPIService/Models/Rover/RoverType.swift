@@ -1,20 +1,20 @@
-public enum RoverType: CaseIterable {
-    case curiosity(Array<RoverCameraAbbreviation> = [.fhaz, .rhaz, .mast, .chemcam, .mahli, .mardi, .navcam])
-    case opportunity(Array<RoverCameraAbbreviation> = [.fhaz, .rhaz, .navcam, .pancam, .minites])
-    case spirit(Array<RoverCameraAbbreviation> = [.fhaz, .rhaz, .navcam, .pancam, .minites])
+import Commons
 
-    public var name: String {
+public enum RoverType: String, Pickable {
+    case curiosity = "Curiosity"
+    case opportunity = "Opportunity"
+    case spirit = "Spirit"
+
+    public static var defaultValue: RoverType { .curiosity }
+    public var id: Self { self }
+    public var availableCameras: Array<RoverCameraAbbreviation> {
         switch self {
         case .curiosity:
-            return "Curiosity"
+            return [.all, .fhaz, .rhaz, .mast, .chemcam, .mahli, .mardi, .navcam]
         case .opportunity:
-            return "Opportunity"
+            return [.all, .fhaz, .rhaz, .navcam, .pancam, .minites]
         case .spirit:
-            return "Spirit"
+            return [.all, .fhaz, .rhaz, .navcam, .pancam, .minites]
         }
-    }
-
-    public static var allCases: Array<RoverType> {
-        [.curiosity(), .opportunity(), .spirit()]
     }
 }
