@@ -24,12 +24,26 @@ extension RoverPhotosEndpoint: Endpoint {
     var queryItems: Array<URLQueryItem>? {
         switch self {
         case let .photos(configuration):
-            return [
+            var items: Array<URLQueryItem> = .init()
+            
+            if let page = configuration.page {
+                items.append(
+                    .init(name: "page", value: page)
+                )
+            }
+
+            if let camera = configuration.camera, camera.lowercased() != "all" {
+                items.append(
+                    .init(name: "camera", value: camera)
+                )
+            }
+
+            items.append(contentsOf: [
                 .init(name: "earth_date", value: configuration.date),
-                .init(name: "camera", value: configuration.camera),
-                .init(name: "page", value: configuration.page),
                 .init(name: "api_key", value: configuration.apiKey)
-            ]
+            ])
+
+            return items
         }
     }
 }
