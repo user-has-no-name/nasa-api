@@ -1,4 +1,7 @@
 import SwiftUI
+import UICommons
+import Design
+import NasaAPIService
 
 public struct DashboardView: View {
     @StateObject private var viewModel: DashboardViewModel
@@ -12,12 +15,38 @@ public struct DashboardView: View {
             if viewModel.loading {
                 PreloaderView()
             } else {
-                Text("loaded")
-                    .foregroundColor(.white)
+
+                VStack {
+                    Text(viewModel.selectedCamera.rawValue)
+                        .onTapGesture {
+                            viewModel.showBottomSheetPicker(of: .camera)
+                        }
+                        .foregroundColor(.white)
+
+                    Text(viewModel.selectedRover.rawValue)
+                        .onTapGesture {
+                            viewModel.showBottomSheetPicker(of: .rover)
+                        }
+                        .foregroundColor(.white)
+
+                    Button {
+                        Task {
+                            await viewModel.fetchPhotos()
+                        }
+                    } label: {
+                        Text("Load photos")
+                    }
+                }
+
             }
-        }.task {
-            await viewModel.fetchPhotos()
         }
+        .bottomSheet(
+            isShowing: $viewModel.showRoverPicker,
+            using: viewModel.roverPickerViewModel()
+        )
+        .bottomSheet(
+            isShowing: $viewModel.showCameraPicker,
+            using: viewModel.cameraPickerViewModel()
+        )
     }
 }
-

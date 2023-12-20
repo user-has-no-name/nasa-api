@@ -18,7 +18,8 @@ let package = Package(
         .package(path: "DependencyInjection"),
         .package(path: "NasaAPIService"),
         .package(path: "Navigation"),
-        .package(path: "SecretsManager")
+        .package(path: "SecretsManager"),
+        .package(path: "UICommons")
     ],
     targets: [
         .target(
@@ -30,7 +31,8 @@ let package = Package(
                 .byName(name: "DependencyInjection"),
                 .byName(name: "NasaAPIService"),
                 .byName(name: "Navigation"),
-                .byName(name: "SecretsManager")
+                .byName(name: "SecretsManager"),
+                .byName(name: "UICommons")
             ]
         ),
         .testTarget(

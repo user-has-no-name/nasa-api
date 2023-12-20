@@ -9,7 +9,7 @@ public class BottomSheetViewModel<Value: Pickable>: ObservableObject {
     @Published public var selectedValue: Value
     public var title: String
     public var pickerValues: Array<Value>
-    public var listener: BottomSheetListener?
+    public weak var listener: BottomSheetListener?
 
     public init(
         with title: String,
