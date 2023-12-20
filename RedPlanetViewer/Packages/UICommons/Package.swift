@@ -12,6 +12,7 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(path: "Commons"),
         .package(path: "Design"),
         .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "7.0.0"))
     ],
@@ -19,6 +20,7 @@ let package = Package(
         .target(
             name: "UICommons",
             dependencies: [
+                .byName(name: "Commons"),
                 .byName(name: "Design"),
                 .byName(name: "Kingfisher")
             ]
