@@ -10,16 +10,19 @@ public final class DashboardViewModel: ObservableObject {
     @Injected private var secretsManager: SecretsManager
 
     @Published var popupConfig: PopupWithDatePickerModel?
-
     @Published var showRoverPicker: Bool = false
     @Published var showCameraPicker: Bool = false
     @Published var bottomSheetType: BottomSheetWithPickerType = .camera
+    @Published var toastConfig: Toast?
+
     @Published var selectedRover: RoverType = .defaultValue
     @Published var selectedCamera: RoverCameraAbbreviation = .defaultValue
+    @Published var selectedDate: Date = .init()
 
     @Published var loading: Bool = false
-    @Published var selectedDate: Date = .init()
     @Published var photos: MarsPhotos = .init(photos: .init())
+
+    var currentPage: Int = 1
 
     var selectedValues: Array<AnyHashable> {[
         selectedRover,
@@ -27,26 +30,50 @@ public final class DashboardViewModel: ObservableObject {
         selectedDate
     ]}
 
-
     public init() {}
 
     @MainActor
     func fetchPhotos() async {
-        loading = true
+//        loading = true
         do {
-            photos = try await nasaService.getPhotosFromRover(
+            let fetchedPhotos: MarsPhotos = try await nasaService.getPhotosFromRover(
                 using: .init(
                     roverName: selectedRover.rawValue,
                     date: selectedDate.toString(),
                     camera: selectedCamera.rawValue,
+                    page: "\(currentPage)",
                     apiKey: secretsManager.loadFromSecrets(using: .apiKey) ?? .init()
                 )
             )
-            print(photos)
-            loading = false
+
+            if !fetchedPhotos.photos.isEmpty {
+                photos.photos.append(contentsOf: fetchedPhotos.photos)
+                currentPage += 1
+            } else {
+                guard currentPage != 1 else {
+                    toastConfig = .init(style: .info, message: "No images found")
+                    #warning("Add empty state")
+                    return
+                }
+
+                toastConfig = .init(style: .info, message: "There is no more images")
+            }
+
+//            loading = false
         } catch {
-            loading = false
+            toastConfig = .init(style: .error, message: "Error occurred \(error.localizedDescription)")
+//            loading = false
         }
+    }
+
+    func loadMoreIfNeeded(lastAppearedCard: RoverPhoto) async {
+        guard photos.photos.last?.id == lastAppearedCard.id else { return }
+        await fetchPhotos()
+    }
+
+    func clearResults() {
+        currentPage = 1
+        photos.photos.removeAll()
     }
 
     func showBottomSheetPicker(of type: BottomSheetWithPickerType) {
@@ -75,11 +102,6 @@ public final class DashboardViewModel: ObservableObject {
         )
     }
 
-    func recalculateAvailability() {
-        guard !selectedRover.availableCameras.contains(selectedCamera) else { return }
-        selectedCamera = .all
-    }
-
     func showPopup() {
         popupConfig = .init(
             title: "Date",
@@ -94,7 +116,7 @@ public final class DashboardViewModel: ObservableObject {
         )
     }
 
-    func closePopup() {
+    private func closePopup() {
         popupConfig = nil
     }
 }
@@ -112,5 +134,10 @@ extension DashboardViewModel: BottomSheetListener {
         }
 
         recalculateAvailability()
+    }
+
+    private func recalculateAvailability() {
+        guard !selectedRover.availableCameras.contains(selectedCamera) else { return }
+        selectedCamera = .all
     }
 }

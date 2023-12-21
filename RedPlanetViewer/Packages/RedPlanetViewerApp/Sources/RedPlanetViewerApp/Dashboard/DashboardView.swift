@@ -37,9 +37,11 @@ public struct DashboardView: View {
         }
         .onChange(of: viewModel.selectedValues) { _ in
             Task {
+                viewModel.clearResults()
                 await viewModel.fetchPhotos()
             }
         }
+        .toastView(config: $viewModel.toastConfig)
         .popupPresenter(config: $viewModel.popupConfig)
         .bottomSheet(
             isShowing: $viewModel.showRoverPicker,
@@ -119,7 +121,10 @@ public struct DashboardView: View {
                             date: (photo.earthDate.toDate(format: .api) ?? Date()).toString(format: .dashboardHeader)
                         )
                     )
-                    .padding(.horizontal, 20.0)
+                    .padding(.horizontal, 20.0)    
+                    .task {
+                        await viewModel.loadMoreIfNeeded(lastAppearedCard: photo)
+                    }
                 }
             }
             .padding(.top, 20.0)
