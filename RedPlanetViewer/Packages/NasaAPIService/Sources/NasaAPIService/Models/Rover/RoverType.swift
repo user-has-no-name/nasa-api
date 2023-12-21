@@ -1,12 +1,22 @@
 import Commons
 
 public enum RoverType: String, Pickable {
-    case curiosity = "Curiosity"
-    case opportunity = "Opportunity"
-    case spirit = "Spirit"
+    case curiosity
+    case opportunity
+    case spirit
 
     public static var defaultValue: RoverType { .curiosity }
     public var id: Self { self }
+    public var fullName: String {
+        switch self {
+        case .curiosity:
+            return "Curiosity"
+        case .opportunity:
+            return "Opportunity"
+        case .spirit:
+            return "Spirit"
+        }
+    }
     public var availableCameras: Array<RoverCameraAbbreviation> {
         switch self {
         case .curiosity:

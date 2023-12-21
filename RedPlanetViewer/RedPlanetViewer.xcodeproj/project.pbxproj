@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B1002652B33E84100F8E32D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0B25A24B2B30A251005E72CA /* UICommons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UICommons; sourceTree = "<group>"; };
 		0B25A24C2B30A874005E72CA /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
 		0B25A24D2B30A90C005E72CA /* Root */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Root; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		0BE329C62B3071D30076500F /* RedPlanetViewer */ = {
 			isa = PBXGroup;
 			children = (
+				0B1002652B33E84100F8E32D /* Info.plist */,
 				0BE329C72B3071D30076500F /* AppDelegate.swift */,
 				0BE329D02B3071D50076500F /* Assets.xcassets */,
 				0BE329D22B3071D50076500F /* LaunchScreen.storyboard */,
@@ -323,6 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87K6AG3XHL;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RedPlanetViewer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RedPlanetViewer;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -351,6 +354,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87K6AG3XHL;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RedPlanetViewer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RedPlanetViewer;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

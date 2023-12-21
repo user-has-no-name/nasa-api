@@ -25,7 +25,7 @@ public struct Picker<Value: Pickable>: View {
             selection: $selectedValue
         ) {
             ForEach(values) { value in
-                Text(value.rawValue)
+                Text(value.fullName)
                     .tag(value)
                     .font(
                         value == selectedValue ? selectedValueFont : unselectedValueFont

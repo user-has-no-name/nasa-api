@@ -6,12 +6,12 @@ public enum FilterButtonType {
 
 public struct FilterButton: View {
     private let type: FilterButtonType
-    private let selectedValue: String?
+    private let selectedValue: String
     private let onTapAction: () -> Void
 
     public init(
         type: FilterButtonType,
-        selectedValue: String? = nil,
+        selectedValue: String,
         onTapAction: @escaping () -> Void
     ) {
         self.type = type
@@ -24,39 +24,35 @@ public struct FilterButton: View {
     }
 
     private func buildContent() -> some View {
-        HStack(
-            alignment: .center,
-            spacing: 6.0
-        ) {
-            Image(named: type == .camera ? .cameraIcon : .roverIcon)
-                .resizable()
-                .frame(width: 24.0, height: 24.0)
-
-            Text(selectedValue ?? "All")
-                .font(.system(size: 17, weight: .bold))
-
-            Spacer()
-        }
-        .padding(7.0)
-        .background(
-            RoundedRectangle(cornerRadius: 10.0)
-                .fill(Color.backgroundOne)
-                .shadow(
-                    color: .layerOne.opacity(0.1),
-                    radius: 5,
-                    x: 0, y: 4
-                )
-        )
-        .frame(maxWidth: 140.0)
-        .onTapGesture {
+        Button {
             onTapAction()
-        }
-    }
-}
+        } label: {
+            HStack(
+                alignment: .center,
+                spacing: 6.0
+            ) {
+                Image(named: type == .camera ? .cameraIcon : .roverIcon)
+                    .resizable()
+                    .frame(width: 24.0, height: 24.0)
 
-#Preview {
-    Group {
-        FilterButton(type: .camera, onTapAction: {})
-        FilterButton(type: .rover, selectedValue: "Curiosity", onTapAction: { print("Hello world")})
+                Text(selectedValue)
+                    .font(.system(size: 17, weight: .bold))
+                    .foregroundColor(.layerOne)
+
+                Spacer()
+            }
+            .padding(7.0)
+            .background(
+                RoundedRectangle(cornerRadius: 10.0)
+                    .fill(Color.backgroundOne)
+                    .shadow(
+                        color: .layerOne.opacity(0.1),
+                        radius: 5,
+                        x: 0, y: 4
+                    )
+            )
+
+        }
+        .frame(maxWidth: .infinity)
     }
 }

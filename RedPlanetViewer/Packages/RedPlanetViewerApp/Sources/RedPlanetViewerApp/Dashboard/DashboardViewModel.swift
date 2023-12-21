@@ -21,6 +21,13 @@ public final class DashboardViewModel: ObservableObject {
     @Published var selectedDate: Date = .init()
     @Published var photos: MarsPhotos = .init(photos: .init())
 
+    var selectedValues: Array<AnyHashable> {[
+        selectedRover,
+        selectedCamera,
+        selectedDate
+    ]}
+
+
     public init() {}
 
     @MainActor
@@ -30,7 +37,7 @@ public final class DashboardViewModel: ObservableObject {
             photos = try await nasaService.getPhotosFromRover(
                 using: .init(
                     roverName: selectedRover.rawValue,
-                    date: "2015-6-3",
+                    date: selectedDate.toString(),
                     camera: selectedCamera.rawValue,
                     apiKey: secretsManager.loadFromSecrets(using: .apiKey) ?? .init()
                 )
@@ -43,8 +50,10 @@ public final class DashboardViewModel: ObservableObject {
     }
 
     func showBottomSheetPicker(of type: BottomSheetWithPickerType) {
-        showCameraPicker = type == .camera
-        showRoverPicker = type == .rover
+        withAnimation {
+            showCameraPicker = type == .camera
+            showRoverPicker = type == .rover
+        }
         bottomSheetType = type
     }
 

@@ -29,6 +29,7 @@ public struct CardView: View {
             )
             KFImage(url: imageURL)
         }
+        .frame(maxWidth: .infinity)
         .padding(.leading, 16.0)
         .padding([.top, .bottom, .trailing], 10.0)
         .background(
@@ -41,16 +42,4 @@ public struct CardView: View {
                 )
         )
     }
-}
-
-#Preview {
-    CardView(
-        imageURL: .init(string: "https://media.cnn.com/api/v1/images/stellar/prod/210330140016-curiosity-selfie.jpg?q=w_1480,c_fill"),
-        model: .init(
-            rover: "Curiosity",
-            camera: "Front Hazard Avoidance Camera",
-            date: "June 6, 2019"
-        )
-    )
-    .padding(24.0)
 }
