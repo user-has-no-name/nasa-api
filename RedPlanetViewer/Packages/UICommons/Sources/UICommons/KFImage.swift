@@ -3,8 +3,16 @@ import SwiftUI
 
 public struct KFImage: View {
     private let url: URL?
+    private let processor: DownsamplingImageProcessor = .init(
+        size: .init(
+            width: 130.0,
+            height: 130.0
+        )
+    )
 
     public init(url: URL?) {
+        // to cache only on disk
+        ImageCache.default.memoryStorage.config.totalCostLimit = 1
         self.url = url
     }
 
@@ -14,9 +22,9 @@ public struct KFImage: View {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.layerTwo)
             })
+            .setProcessor(processor)
             .loadDiskFileSynchronously()
-            .targetCache(.init(name: "diskCache"))
-            .memoryCacheExpiration(.never)
+            .targetCache(.default)
             .diskCacheExpiration(.days(7))
             .fade(duration: 0.25)
             .resizable()
