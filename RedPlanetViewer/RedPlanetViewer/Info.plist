@@ -6,17 +6,23 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
-		
 		<key>NSExceptionDomains</key>
-  		<dict>
-    			<key>mars.jpl.nasa.gov</key>
-   			<dict>
-      			<key>NSIncludesSubdomains</key>
-      			<true/>
-      			<key>NSExceptionAllowsInsecureHTTPLoads</key>
-      			<true/>
-    			</dict>
-  		</dict>
+		<dict>
+			<key>mars.nasa.gov</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<string>YES</string>
+				<key>NSIncludesSubdomains</key>
+				<string>YES</string>
+			</dict>
+			<key>mars.jpl.nasa.gov</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 </dict>
 </plist>
