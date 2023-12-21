@@ -11,7 +11,9 @@ public struct DashboardView: View {
     }
 
     public var body: some View {
-        VStack {
+        ZStack {
+            Color.backgroundOne.ignoresSafeArea()
+
             if viewModel.loading {
                 PreloaderView()
             } else {
@@ -36,10 +38,15 @@ public struct DashboardView: View {
                     } label: {
                         Text("Load photos")
                     }
+
+                    Button("Popup") {
+                        viewModel.showPopup()
+                    }
                 }
 
             }
         }
+        .popupPresenter(config: $viewModel.popupConfig)
         .bottomSheet(
             isShowing: $viewModel.showRoverPicker,
             using: viewModel.roverPickerViewModel()

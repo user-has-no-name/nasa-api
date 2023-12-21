@@ -9,6 +9,8 @@ public final class DashboardViewModel: ObservableObject {
     @Injected private var nasaService: NasaAPIService
     @Injected private var secretsManager: SecretsManager
 
+    @Published var popupConfig: PopupWithDatePickerModel?
+
     @Published var showRoverPicker: Bool = false
     @Published var showCameraPicker: Bool = false
     @Published var bottomSheetType: BottomSheetWithPickerType = .camera
@@ -67,6 +69,24 @@ public final class DashboardViewModel: ObservableObject {
     func recalculateAvailability() {
         guard !selectedRover.availableCameras.contains(selectedCamera) else { return }
         selectedCamera = .all
+    }
+
+    func showPopup() {
+        popupConfig = .init(
+            title: "Date",
+            selectedDate: selectedDate,
+            onSaveTappedAction: { [weak self] date in
+                self?.selectedDate = date
+                self?.closePopup()
+            },
+            onCancelTappedAction: { [weak self] in
+                self?.closePopup()
+            }
+        )
+    }
+
+    func closePopup() {
+        popupConfig = nil
     }
 }
 
