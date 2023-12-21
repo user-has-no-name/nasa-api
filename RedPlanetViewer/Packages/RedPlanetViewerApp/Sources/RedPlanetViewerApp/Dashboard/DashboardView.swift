@@ -14,17 +14,17 @@ public struct DashboardView: View {
     public var body: some View {
         ZStack {
             Color.backgroundOne.ignoresSafeArea()
-
-            if viewModel.loading {
-                PreloaderView()
-            } else {
-                VStack {
-                    setupHeader()
-                    setupList()
+            VStack {
+                setupHeader()
+                if viewModel.showEmptyState {
                     Spacer()
+                    EmptyStateView(for: .dashboard)
+                } else {
+                    setupList()
                 }
-                .ignoresSafeArea(edges: .bottom)
+                Spacer()
             }
+            .ignoresSafeArea(edges: .bottom)
         }
         .overlay(alignment: .bottomTrailing) {
             HistoryButton {
@@ -41,6 +41,7 @@ public struct DashboardView: View {
                 await viewModel.fetchPhotos()
             }
         }
+        .loaderPresenter(config: $viewModel.loaderConfig, forFullScreen: false)
         .toastView(config: $viewModel.toastConfig)
         .popupPresenter(config: $viewModel.popupConfig)
         .bottomSheet(
@@ -121,7 +122,7 @@ public struct DashboardView: View {
                             date: (photo.earthDate.toDate(format: .api) ?? Date()).toString(format: .dashboardHeader)
                         )
                     )
-                    .padding(.horizontal, 20.0)    
+                    .padding(.horizontal, 20.0)
                     .task {
                         await viewModel.loadMoreIfNeeded(lastAppearedCard: photo)
                     }

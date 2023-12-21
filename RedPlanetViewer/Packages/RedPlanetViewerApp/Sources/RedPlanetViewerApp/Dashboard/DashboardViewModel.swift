@@ -5,7 +5,7 @@ import NasaAPIService
 import SecretsManager
 import UICommons
 
-public final class DashboardViewModel: ObservableObject {
+public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     @Injected private var nasaService: NasaAPIService
     @Injected private var secretsManager: SecretsManager
 
@@ -14,13 +14,15 @@ public final class DashboardViewModel: ObservableObject {
     @Published var showCameraPicker: Bool = false
     @Published var bottomSheetType: BottomSheetWithPickerType = .camera
     @Published var toastConfig: Toast?
+    @Published var showEmptyState: Bool = false
 
     @Published var selectedRover: RoverType = .defaultValue
     @Published var selectedCamera: RoverCameraAbbreviation = .defaultValue
     @Published var selectedDate: Date = .init()
 
-    @Published var loading: Bool = false
     @Published var photos: MarsPhotos = .init(photos: .init())
+
+    @Published public var loaderConfig: LoaderConfiguration?
 
     var currentPage: Int = 1
 
@@ -34,7 +36,7 @@ public final class DashboardViewModel: ObservableObject {
 
     @MainActor
     func fetchPhotos() async {
-//        loading = true
+        showLoader()
         do {
             let fetchedPhotos: MarsPhotos = try await nasaService.getPhotosFromRover(
                 using: .init(
@@ -51,18 +53,18 @@ public final class DashboardViewModel: ObservableObject {
                 currentPage += 1
             } else {
                 guard currentPage != 1 else {
-                    toastConfig = .init(style: .info, message: "No images found")
-                    #warning("Add empty state")
+                    showEmptyState = true
+                    removeLoader()
                     return
                 }
 
                 toastConfig = .init(style: .info, message: "There is no more images")
             }
-
-//            loading = false
+            removeLoader()
         } catch {
             toastConfig = .init(style: .error, message: "Error occurred \(error.localizedDescription)")
-//            loading = false
+            showEmptyState = true
+            removeLoader()
         }
     }
 
@@ -72,6 +74,7 @@ public final class DashboardViewModel: ObservableObject {
     }
 
     func clearResults() {
+        showEmptyState = false
         currentPage = 1
         photos.photos.removeAll()
     }
