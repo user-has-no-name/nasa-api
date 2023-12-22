@@ -5,7 +5,7 @@ import Design
 import NasaAPIService
 
 public struct DashboardView: View {
-    @StateObject private var viewModel: DashboardViewModel
+    @ObservedObject private var viewModel: DashboardViewModel
 
     public init(viewModel: DashboardViewModel) {
         self._viewModel = .init(wrappedValue: viewModel)
@@ -28,7 +28,7 @@ public struct DashboardView: View {
         }
         .overlay(alignment: .bottomTrailing) {
             HistoryButton {
-
+                viewModel.goToHistoryPage()
             }
             .padding(.trailing, 20.0)
         }
@@ -64,8 +64,7 @@ public struct DashboardView: View {
                  title: Text("Save Filters"),
                  message: Text("The current filters and the date you have chosen can be saved to the filter history"),
                  primaryButton: .default(Text("Save")) {
-                     // Handle save action
-                     print("Save action")
+                     viewModel.saveFilter()
                  },
                  secondaryButton: .cancel()
              )
@@ -98,11 +97,17 @@ public struct DashboardView: View {
 
                 HStack(spacing: 23.0) {
                     HStack(spacing: 12.0) {
-                        FilterButton(type: .rover, selectedValue: viewModel.selectedRover.fullName) {
+                        FilterButton(
+                            type: .rover,
+                            selectedValue: viewModel.selectedRover.rawValue
+                        ) {
                             viewModel.showBottomSheetPicker(of: .rover)
                         }
 
-                        FilterButton(type: .camera, selectedValue: viewModel.selectedCamera.fullName) {
+                        FilterButton(
+                            type: .camera,
+                            selectedValue: viewModel.selectedCamera.rawValue
+                        ) {
                             viewModel.showBottomSheetPicker(of: .camera)
                         }
                     }

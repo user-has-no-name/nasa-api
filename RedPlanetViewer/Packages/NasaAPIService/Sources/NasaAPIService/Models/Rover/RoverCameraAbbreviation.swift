@@ -2,32 +2,41 @@ import Commons
 import Foundation
 
 public enum RoverCameraAbbreviation: String, Pickable {
-    case all, fhaz, rhaz, mast, chemcam, mahli, mardi, navcam, pancam, minites
+    case all = "All"
+    case fhaz = "Front Hazard Avoidance Camera"
+    case rhaz = "Rear Hazard Avoidance Camera"
+    case mast = "Mast Camera"
+    case chemcam = "Chemistry and Camera Complex"
+    case mahli = "Mars Hand Lens Imager"
+    case mardi = "Mars Descent Imager"
+    case navcam = "Navigation Camera"
+    case pancam = "Panoramic Camera"
+    case minites = "Miniature Thermal Emission Spectrometer (Mini-TES)"
 
     public var id: Self { self }
     public static var defaultValue: RoverCameraAbbreviation = .all
-    public var fullName: String {
+    public var abbreviation: String {
         switch self {
         case .fhaz:
-            return "Front Hazard Avoidance Camera"
+            return "fhaz"
         case .rhaz:
-            return "Rear Hazard Avoidance Camera"
+            return "rhaz"
         case .mast:
-            return "Mast Camera"
+            return "mast"
         case .chemcam:
-            return "Chemistry and Camera Complex"
+            return "chemcam"
         case .mahli:
-            return "Mars Hand Lens Imager"
+            return "mahli"
         case .mardi:
-            return "Mars Descent Imager"
+            return "mardi"
         case .navcam:
-            return "Navigation Camera"
+            return "navcam"
         case .pancam:
-            return "Panoramic Camera"
+            return "pancam"
         case .minites:
-            return "Miniature Thermal Emission Spectrometer (Mini-TES)"
+            return "minites"
         case .all:
-            return "All"
+            return "all"
         }
     }
 }

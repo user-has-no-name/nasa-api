@@ -17,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		0B1002652B33E84100F8E32D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0B1002662B34BF4700F8E32D /* Database */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Database; sourceTree = "<group>"; };
 		0B25A24B2B30A251005E72CA /* UICommons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UICommons; sourceTree = "<group>"; };
 		0B25A24C2B30A874005E72CA /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
 		0B25A24D2B30A90C005E72CA /* Root */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Root; sourceTree = "<group>"; };
@@ -52,6 +53,7 @@
 		0B3DB1C92B30834300EC61C9 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				0B1002662B34BF4700F8E32D /* Database */,
 				0B684BBD2B31472500AE7781 /* RedPlanetViewerApp */,
 				0BBFD5F92B31420E0069EDAC /* Commons */,
 				0BBFD5F82B313BE60069EDAC /* SecretsManager */,

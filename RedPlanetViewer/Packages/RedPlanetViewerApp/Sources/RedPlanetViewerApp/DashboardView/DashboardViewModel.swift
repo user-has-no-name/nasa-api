@@ -1,13 +1,20 @@
 import Commons
+import Database
 import DependencyInjection
 import SwiftUI
 import NasaAPIService
 import SecretsManager
 import UICommons
 
+public protocol DashboardNavigation: AnyObject {
+    func goToHistoryPage(_ listener: HistoryListener)
+}
+
 public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     @Injected private var nasaService: NasaAPIService
     @Injected private var secretsManager: SecretsManager
+
+    private  var navigation: DashboardNavigation?
 
     @Published var showAlert: Bool = false
     @Published var selectedRow: RoverPhoto?
@@ -26,6 +33,8 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     @Published var photos: MarsPhotos = .init(photos: .init())
 
     @Published public var loaderConfig: LoaderConfiguration?
+    @RealmRepositoryWrapper
+    var filterRepo: RealmRepository<FilterEntity>
 
     var currentPage: Int = 1
 
@@ -35,7 +44,11 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
         selectedDate
     ]}
 
-    public init() {}
+    public init(
+        navigation: DashboardNavigation
+    ) {
+        self.navigation = navigation
+    }
 
     @MainActor
     func fetchPhotos() async {
@@ -43,9 +56,9 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
         do {
             let fetchedPhotos: MarsPhotos = try await nasaService.getPhotosFromRover(
                 using: .init(
-                    roverName: selectedRover.rawValue,
+                    roverName: selectedRover.abbreviation,
                     date: selectedDate.toString(),
-                    camera: selectedCamera.rawValue,
+                    camera: selectedCamera.abbreviation,
                     page: "\(currentPage)",
                     apiKey: secretsManager.loadFromSecrets(using: .apiKey) ?? .init()
                 )
@@ -122,6 +135,25 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
         )
     }
 
+    func saveFilter() {
+        do { 
+            try filterRepo.insert(item: .init(
+                id: .init(),
+                rover: selectedRover.rawValue,
+                camera: selectedCamera.rawValue,
+                date: selectedDate
+            ))
+
+            toastConfig = .init(style: .success, message: "Filter successfully saved")
+        } catch {
+            toastConfig = .init(style: .error, message: "Could not save filters. Error: \(error)")
+        }
+    }
+
+    func goToHistoryPage() {
+        navigation?.goToHistoryPage(self)
+    }
+
     private func closePopup() {
         popupConfig = nil
     }
@@ -145,5 +177,14 @@ extension DashboardViewModel: BottomSheetListener {
     private func recalculateAvailability() {
         guard !selectedRover.availableCameras.contains(selectedCamera) else { return }
         selectedCamera = .all
+    }
+}
+
+extension DashboardViewModel: HistoryListener {
+
+    public func chooseFilter(_ filter: Filter) {
+        selectedRover = .init(rawValue: filter.rover) ?? .curiosity
+        selectedCamera = .init(rawValue: filter.camera) ?? .all
+        selectedDate = filter.date
     }
 }

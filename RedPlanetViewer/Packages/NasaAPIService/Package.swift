@@ -12,12 +12,14 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(path: "Commons"),
         .package(path: "Networking")
     ],
     targets: [
         .target(
             name: "NasaAPIService",
             dependencies: [
+                .byName(name: "Commons"),
                 .byName(name: "Networking")
             ]
         ),

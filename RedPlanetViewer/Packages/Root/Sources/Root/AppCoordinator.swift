@@ -4,7 +4,7 @@ import RedPlanetViewerApp
 
 public final class AppCoordinator: Coordinator {
     public weak var parentCoordinator: Coordinator?
-    public var children: [Coordinator] = []
+    public var children: Array<Coordinator> = .init()
     public var navigationController: UINavigationController
     
     public init(navigationController: UINavigationController) {
@@ -12,9 +12,7 @@ public final class AppCoordinator: Coordinator {
     }
 
     public func start() {
-        let dashboardView: DashboardView = .init(viewModel: .init())
-        let hostingController: HostingController = .init(for: dashboardView)
-        navigationController.navigationBar.isHidden = true
-        navigationController.pushViewController(hostingController, animated: true)
+        let dashboardCoordinator: DashboardCoordinator = .init(navigationController: navigationController)
+        dashboardCoordinator.start()
     }
 }
