@@ -1,3 +1,5 @@
+import Foundation
+
 public protocol RealmEntity {
     associatedtype EntityType
 
@@ -9,6 +11,7 @@ public protocol Repository {
     associatedtype EntityType
 
     func getAll() -> Array<EntityType>
+    func getItem(by id: UUID) -> EntityType?
     func insert(item: EntityType) throws
     func remove(item: EntityType) throws
 }

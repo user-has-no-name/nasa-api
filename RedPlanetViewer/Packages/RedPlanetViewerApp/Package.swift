@@ -20,7 +20,8 @@ let package = Package(
         .package(path: "NasaAPIService"),
         .package(path: "Navigation"),
         .package(path: "SecretsManager"),
-        .package(path: "UICommons")
+        .package(path: "UICommons"),
+        .package(path: "UserDefaultsManager")
     ],
     targets: [
         .target(
@@ -34,7 +35,8 @@ let package = Package(
                 .byName(name: "NasaAPIService"),
                 .byName(name: "Navigation"),
                 .byName(name: "SecretsManager"),
-                .byName(name: "UICommons")
+                .byName(name: "UICommons"),
+                .byName(name: "UserDefaultsManager")
             ]
         ),
         .testTarget(

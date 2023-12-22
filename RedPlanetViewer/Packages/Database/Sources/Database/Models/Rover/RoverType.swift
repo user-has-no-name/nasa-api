@@ -1,6 +1,6 @@
 import Commons
 
-public enum RoverType: String, Pickable {
+public enum RoverType: String, Pickable, Codable {
     case curiosity = "Curiosity"
     case opportunity = "Opportunity"
     case spirit = "Spirit"

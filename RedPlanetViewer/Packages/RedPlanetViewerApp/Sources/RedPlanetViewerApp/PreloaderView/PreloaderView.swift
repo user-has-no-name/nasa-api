@@ -3,9 +3,17 @@ import Design
 import SwiftUI
 
 struct PreloaderView: View {
+    @ObservedObject private var viewModel: PreloaderViewModel
+
+    init(viewModel: PreloaderViewModel) {
+        self._viewModel = .init(initialValue: viewModel)
+    }
 
     var body: some View {
         buildContent()
+            .onAppear {
+                viewModel.prefetchData()
+            }
     }
 
     private func buildContent() -> some View {
@@ -18,7 +26,10 @@ struct PreloaderView: View {
                 animationConfiguration: .loader,
                 contentMode: .scaleAspectFill
             )
-            .frame(maxWidth: 200.0, maxHeight: 50.0)
+            .frame(
+                maxWidth: 200.0,
+                maxHeight: 50.0
+            )
             .padding(.bottom, 24.0)
         }
     }
@@ -34,8 +45,4 @@ struct PreloaderView: View {
             .frame(width: 123.0, height: 123.0)
             .shadow(color: .layerOne.opacity(0.1), radius: 27.5, x: 0, y: 20)
     }
-}
-
-#Preview {
-    PreloaderView()
 }

@@ -5,6 +5,7 @@ import SwiftUI
 import NasaAPIService
 import SecretsManager
 import UICommons
+import UserDefaultsManager
 
 public protocol DashboardNavigation: AnyObject {
     func goToHistoryPage(_ listener: HistoryListener)
@@ -26,27 +27,20 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     @Published var toastConfig: Toast?
     @Published var showEmptyState: Bool = false
 
-    @Published var selectedRover: RoverType = .defaultValue
-    @Published var selectedCamera: RoverCameraAbbreviation = .defaultValue
-    @Published var selectedDate: Date = .init()
+    @Published var selectedFilter: Filter
 
     @Published var photos: MarsPhotos = .init(photos: .init())
 
     @Published public var loaderConfig: LoaderConfiguration?
     @RealmRepositoryWrapper
     var filterRepo: RealmRepository<FilterEntity>
-
     var currentPage: Int = 1
 
-    var selectedValues: Array<AnyHashable> {[
-        selectedRover,
-        selectedCamera,
-        selectedDate
-    ]}
-
     public init(
+        selectedFilter: Filter,
         navigation: DashboardNavigation
     ) {
+        self.selectedFilter = selectedFilter
         self.navigation = navigation
     }
 
@@ -56,9 +50,9 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
         do {
             let fetchedPhotos: MarsPhotos = try await nasaService.getPhotosFromRover(
                 using: .init(
-                    roverName: selectedRover.abbreviation,
-                    date: selectedDate.toString(),
-                    camera: selectedCamera.abbreviation,
+                    roverName: selectedFilter.rover.abbreviation,
+                    date: selectedFilter.date.toString(),
+                    camera: selectedFilter.camera.abbreviation,
                     page: "\(currentPage)",
                     apiKey: secretsManager.loadFromSecrets(using: .apiKey) ?? .init()
                 )
@@ -95,6 +89,15 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
         photos.photos.removeAll()
     }
 
+    func saveLastUsedFilter() {
+        @UserDefaultsManager(.lastUsedFilter, defaultValue: nil) var lastUsedFilter: Data?
+        do {
+            lastUsedFilter = try JSONEncoder().encode(selectedFilter)
+        } catch {
+            toastConfig = .init(style: .error, message: "Could not save recently used filter. Error: \(error.localizedDescription)")
+        }
+    }
+
     func showBottomSheetPicker(of type: BottomSheetWithPickerType) {
         withAnimation {
             showCameraPicker = type == .camera
@@ -106,8 +109,8 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     func cameraPickerViewModel() -> BottomSheetViewModel<RoverCameraAbbreviation> {
         .init(
             with: BottomSheetWithPickerType.camera.rawValue,
-            pickerValues: selectedRover.availableCameras,
-            selectedValue: selectedCamera,
+            pickerValues: selectedFilter.rover.availableCameras,
+            selectedValue: selectedFilter.camera,
             listener: self
         )
     }
@@ -116,7 +119,7 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
         .init(
             with: BottomSheetWithPickerType.rover.rawValue,
             pickerValues: RoverType.allCases,
-            selectedValue: selectedRover,
+            selectedValue: selectedFilter.rover,
             listener: self
         )
     }
@@ -124,9 +127,9 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     func showPopup() {
         popupConfig = .init(
             title: "Date",
-            selectedDate: selectedDate,
+            selectedDate: selectedFilter.date,
             onSaveTappedAction: { [weak self] date in
-                self?.selectedDate = date
+                self?.selectedFilter.date = date
                 self?.closePopup()
             },
             onCancelTappedAction: { [weak self] in
@@ -136,14 +139,14 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     }
 
     func saveFilter() {
-        do { 
-            try filterRepo.insert(item: .init(
+        do {
+            let filterToSave: Filter = .init(
                 id: .init(),
-                rover: selectedRover.rawValue,
-                camera: selectedCamera.rawValue,
-                date: selectedDate
-            ))
-
+                rover: selectedFilter.rover,
+                camera: selectedFilter.camera,
+                date: selectedFilter.date
+            )
+            try filterRepo.insert(item: filterToSave)
             toastConfig = .init(style: .success, message: "Filter successfully saved")
         } catch {
             toastConfig = .init(style: .error, message: "Could not save filters. Error: \(error)")
@@ -164,9 +167,9 @@ extension DashboardViewModel: BottomSheetListener {
     public func tapOnAccept<Value>(_ selectedValue: Value) where Value: Pickable {
         switch selectedValue {
         case let cameraAbbreviation as RoverCameraAbbreviation:
-            selectedCamera = cameraAbbreviation
+            selectedFilter.camera = cameraAbbreviation
         case let roverType as RoverType:
-            selectedRover = roverType
+            selectedFilter.rover = roverType
         default:
             break
         }
@@ -175,16 +178,14 @@ extension DashboardViewModel: BottomSheetListener {
     }
 
     private func recalculateAvailability() {
-        guard !selectedRover.availableCameras.contains(selectedCamera) else { return }
-        selectedCamera = .all
+        guard !selectedFilter.rover.availableCameras.contains(selectedFilter.camera) else { return }
+        selectedFilter.camera = .all
     }
 }
 
 extension DashboardViewModel: HistoryListener {
 
     public func chooseFilter(_ filter: Filter) {
-        selectedRover = .init(rawValue: filter.rover) ?? .curiosity
-        selectedCamera = .init(rawValue: filter.camera) ?? .all
-        selectedDate = filter.date
+        selectedFilter = filter
     }
 }

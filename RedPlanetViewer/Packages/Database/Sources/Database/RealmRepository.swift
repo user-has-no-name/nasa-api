@@ -24,5 +24,9 @@ public final class RealmRepository<T>: Repository where T: RealmEntity, T: Objec
         }
     }
 
+    public func getItem(by id: UUID) -> T.EntityType? {
+        realm.object(ofType: T.self, forPrimaryKey: id)?.entity
+    }
+
     public init() {}
 }

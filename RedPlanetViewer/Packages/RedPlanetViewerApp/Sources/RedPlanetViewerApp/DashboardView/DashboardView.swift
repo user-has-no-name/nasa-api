@@ -35,9 +35,10 @@ public struct DashboardView: View {
         .task {
             await viewModel.fetchPhotos()
         }
-        .onChange(of: viewModel.selectedValues) { _ in
+        .onChange(of: viewModel.selectedFilter) { _ in
             Task {
                 viewModel.clearResults()
+                viewModel.saveLastUsedFilter()
                 await viewModel.fetchPhotos()
             }
         }
@@ -82,7 +83,7 @@ public struct DashboardView: View {
                         Text("MARS.CAMERA")
                             .font(.system(size: 34, weight: .bold))
 
-                        Text(viewModel.selectedDate.toString(format: .dashboardHeader))
+                        Text(viewModel.selectedFilter.date.toString(format: .dashboardHeader))
                             .font(.system(size: 17, weight: .bold))
                     }
                     Spacer()
@@ -99,14 +100,14 @@ public struct DashboardView: View {
                     HStack(spacing: 12.0) {
                         FilterButton(
                             type: .rover,
-                            selectedValue: viewModel.selectedRover.rawValue
+                            selectedValue: viewModel.selectedFilter.rover.rawValue
                         ) {
                             viewModel.showBottomSheetPicker(of: .rover)
                         }
 
                         FilterButton(
                             type: .camera,
-                            selectedValue: viewModel.selectedCamera.rawValue
+                            selectedValue: viewModel.selectedFilter.camera.rawValue
                         ) {
                             viewModel.showBottomSheetPicker(of: .camera)
                         }

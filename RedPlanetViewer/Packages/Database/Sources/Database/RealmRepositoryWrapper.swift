@@ -1,3 +1,4 @@
+import Foundation
 import RealmSwift
 
 @propertyWrapper
@@ -20,6 +21,10 @@ public struct RealmRepositoryWrapper<T>: Repository where T: RealmEntity, T: Obj
 
     public func getAll() -> Array<T.EntityType> {
         repository.getAll()
+    }
+
+    public func getItem(by id: UUID) -> T.EntityType? {
+        repository.getItem(by: id)
     }
 
     public func remove(item: T.EntityType) throws {

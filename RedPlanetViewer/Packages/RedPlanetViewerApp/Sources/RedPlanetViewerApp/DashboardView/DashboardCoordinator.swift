@@ -1,23 +1,37 @@
 import Navigation
 import UIKit
+import Database
+
+public struct DashboardDependency: Dependency {
+    public let selectedFilter: Filter
+
+    public init(selectedFilter: Filter) {
+        self.selectedFilter = selectedFilter
+    }
+}
 
 public final class DashboardCoordinator: Coordinator {
-
-    public weak var parentCoordinator: Coordinator?
-    public var children: Array<Coordinator> = .init()
+    public weak var parentCoordinator: (any Coordinator)?
+    public var children: Array<any Coordinator> = .init()
 
     public var navigationController: UINavigationController
+    public var dependency: DashboardDependency?
 
-    public init(navigationController: UINavigationController) {
+    public init(
+        navigationController: UINavigationController,
+        dependency: DashboardDependency
+    ) {
         self.navigationController = navigationController
+        self.dependency = dependency
+        parentCoordinator = self
     }
 
     public func start() {
-        navigateToDashboard()
+        navigateToDashboard(filter: dependency?.selectedFilter ?? .default())
     }
 
-    private func navigateToDashboard() {
-        let dashboardView: DashboardView = .init(viewModel: .init(navigation: self))
+    private func navigateToDashboard(filter: Filter) {
+        let dashboardView: DashboardView = .init(viewModel: .init(selectedFilter: filter, navigation: self))
         let hostingController: HostingController = .init(for: dashboardView)
         navigationController.navigationBar.isHidden = true
         navigationController.pushViewController(hostingController, animated: true)

@@ -1,7 +1,7 @@
 import Commons
 import Foundation
 
-public enum RoverCameraAbbreviation: String, Pickable {
+public enum RoverCameraAbbreviation: String, Pickable, Codable {
     case all = "All"
     case fhaz = "Front Hazard Avoidance Camera"
     case rhaz = "Rear Hazard Avoidance Camera"

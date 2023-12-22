@@ -13,6 +13,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "Commons"),
+        .package(path: "Database"),
         .package(path: "Networking")
     ],
     targets: [
@@ -20,6 +21,7 @@ let package = Package(
             name: "NasaAPIService",
             dependencies: [
                 .byName(name: "Commons"),
+                .byName(name: "Database"),
                 .byName(name: "Networking")
             ]
         ),

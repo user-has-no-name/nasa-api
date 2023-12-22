@@ -83,8 +83,8 @@ struct HistoryView: View {
                 LazyVStack {
                     FiltersCardView(
                         model: .init(
-                            rover: filter.rover,
-                            camera: filter.camera,
+                            rover: filter.rover.rawValue,
+                            camera: filter.camera.rawValue,
                             date: filter.date.toString(format: .dashboardHeader)
                         )
                     )

@@ -1,4 +1,5 @@
 import Networking
+import Database
 
 public protocol NasaAPIServiceable {
     func getPhotosFromRover(using configuration: RoverPhotosEndpointConfiguration) async throws -> MarsPhotos
