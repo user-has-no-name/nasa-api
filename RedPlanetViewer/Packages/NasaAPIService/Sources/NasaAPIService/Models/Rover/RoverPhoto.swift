@@ -1,4 +1,4 @@
-public struct RoverPhoto: Decodable {
+public struct RoverPhoto: Identifiable, Decodable {
     public let id: Int
     public var sol: Int?
     public let camera: Camera

@@ -9,6 +9,9 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     @Injected private var nasaService: NasaAPIService
     @Injected private var secretsManager: SecretsManager
 
+    @Published var showAlert: Bool = false
+    @Published var selectedRow: RoverPhoto?
+    @Published var showFullScreenImage: Bool = false
     @Published var popupConfig: PopupWithDatePickerModel?
     @Published var showRoverPicker: Bool = false
     @Published var showCameraPicker: Bool = false

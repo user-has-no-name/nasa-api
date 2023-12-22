@@ -41,6 +41,13 @@ public struct DashboardView: View {
                 await viewModel.fetchPhotos()
             }
         }
+        .fullScreenCover(item: $viewModel.selectedRow) { row in 
+            FullScreenImageView(
+                imageURL: .init(string: row.imgSrc),
+                onCloseTappedAction: {
+                    viewModel.selectedRow = nil
+            })
+        }
         .loaderPresenter(config: $viewModel.loaderConfig, forFullScreen: false)
         .toastView(config: $viewModel.toastConfig)
         .popupPresenter(config: $viewModel.popupConfig)
@@ -52,6 +59,17 @@ public struct DashboardView: View {
             isShowing: $viewModel.showCameraPicker,
             using: viewModel.cameraPickerViewModel()
         )
+        .alert(isPresented: $viewModel.showAlert) {
+             Alert(
+                 title: Text("Save Filters"),
+                 message: Text("The current filters and the date you have chosen can be saved to the filter history"),
+                 primaryButton: .default(Text("Save")) {
+                     // Handle save action
+                     print("Save action")
+                 },
+                 secondaryButton: .cancel()
+             )
+         }
     }
 
     private func setupHeader() -> some View {
@@ -90,7 +108,7 @@ public struct DashboardView: View {
                     }
 
                     Button {
-
+                        viewModel.showAlert.toggle()
                     } label: {
                         Image(named: .addIcon)
                             .frame(width: 38.0, height: 38.0)
@@ -120,7 +138,10 @@ public struct DashboardView: View {
                             rover: photo.rover.name,
                             camera: photo.camera.fullName,
                             date: (photo.earthDate.toDate(format: .api) ?? Date()).toString(format: .dashboardHeader)
-                        )
+                        ),
+                        onImageTapAction: {
+                            viewModel.selectedRow = photo
+                        }
                     )
                     .padding(.horizontal, 20.0)
                     .task {
