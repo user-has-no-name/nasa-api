@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B25A24F2B30AA17005E72CA /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = 0B25A24E2B30AA17005E72CA /* Root */; };
+		0B29F5162B30F8840072D7B6 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 0B29F5152B30F8840072D7B6 /* Dependencies */; };
+		0B29F5182B30F9010072D7B6 /* DependencyInjection in Frameworks */ = {isa = PBXBuildFile; productRef = 0B29F5172B30F9010072D7B6 /* DependencyInjection */; };
+		0BE329C82B3071D30076500F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE329C72B3071D30076500F /* AppDelegate.swift */; };
+		0BE329D12B3071D50076500F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BE329D02B3071D50076500F /* Assets.xcassets */; };
+		0BE329D42B3071D50076500F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE329D22B3071D50076500F /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0B1002652B33E84100F8E32D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0B1002662B34BF4700F8E32D /* Database */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Database; sourceTree = "<group>"; };
+		0B25A24B2B30A251005E72CA /* UICommons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UICommons; sourceTree = "<group>"; };
+		0B25A24C2B30A874005E72CA /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
+		0B25A24D2B30A90C005E72CA /* Root */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Root; sourceTree = "<group>"; };
+		0B29F5132B30F6680072D7B6 /* DependencyInjection */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DependencyInjection; sourceTree = "<group>"; };
+		0B29F5142B30F7760072D7B6 /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Dependencies; sourceTree = "<group>"; };
+		0B3DB1CA2B30836600EC61C9 /* Design */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Design; sourceTree = "<group>"; };
+		0B3DB1CC2B30845500EC61C9 /* Animation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Animation; sourceTree = "<group>"; };
+		0B684BBD2B31472500AE7781 /* RedPlanetViewerApp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RedPlanetViewerApp; sourceTree = "<group>"; };
+		0B8984AA2B3698120076659B /* UserDefaultsManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsManager; sourceTree = "<group>"; };
+		0BBFD5F62B30FED40069EDAC /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
+		0BBFD5F72B310C680069EDAC /* NasaAPIService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NasaAPIService; sourceTree = "<group>"; };
+		0BBFD5F82B313BE60069EDAC /* SecretsManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SecretsManager; sourceTree = "<group>"; };
+		0BBFD5F92B31420E0069EDAC /* Commons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Commons; sourceTree = "<group>"; };
+		0BE329C42B3071D30076500F /* RedPlanetViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedPlanetViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BE329C72B3071D30076500F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0BE329D02B3071D50076500F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0BE329D32B3071D50076500F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0BE329C12B3071D30076500F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B29F5182B30F9010072D7B6 /* DependencyInjection in Frameworks */,
+				0B25A24F2B30AA17005E72CA /* Root in Frameworks */,
+				0B29F5162B30F8840072D7B6 /* Dependencies in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B3DB1C92B30834300EC61C9 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				0B8984AA2B3698120076659B /* UserDefaultsManager */,
+				0B1002662B34BF4700F8E32D /* Database */,
+				0B684BBD2B31472500AE7781 /* RedPlanetViewerApp */,
+				0BBFD5F92B31420E0069EDAC /* Commons */,
+				0BBFD5F82B313BE60069EDAC /* SecretsManager */,
+				0BBFD5F72B310C680069EDAC /* NasaAPIService */,
+				0BBFD5F62B30FED40069EDAC /* Networking */,
+				0B29F5142B30F7760072D7B6 /* Dependencies */,
+				0B29F5132B30F6680072D7B6 /* DependencyInjection */,
+				0B25A24D2B30A90C005E72CA /* Root */,
+				0B25A24C2B30A874005E72CA /* Navigation */,
+				0B25A24B2B30A251005E72CA /* UICommons */,
+				0B3DB1CC2B30845500EC61C9 /* Animation */,
+				0B3DB1CA2B30836600EC61C9 /* Design */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		0B3DB1CD2B30861000EC61C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0BE329BB2B3071D30076500F = {
+			isa = PBXGroup;
+			children = (
+				0B3DB1C92B30834300EC61C9 /* Packages */,
+				0BE329C62B3071D30076500F /* RedPlanetViewer */,
+				0BE329C52B3071D30076500F /* Products */,
+				0B3DB1CD2B30861000EC61C9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0BE329C52B3071D30076500F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0BE329C42B3071D30076500F /* RedPlanetViewer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0BE329C62B3071D30076500F /* RedPlanetViewer */ = {
+			isa = PBXGroup;
+			children = (
+				0B1002652B33E84100F8E32D /* Info.plist */,
+				0BE329C72B3071D30076500F /* AppDelegate.swift */,
+				0BE329D02B3071D50076500F /* Assets.xcassets */,
+				0BE329D22B3071D50076500F /* LaunchScreen.storyboard */,
+			);
+			path = RedPlanetViewer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0BE329C32B3071D30076500F /* RedPlanetViewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BE329D82B3071D50076500F /* Build configuration list for PBXNativeTarget "RedPlanetViewer" */;
+			buildPhases = (
+				0BE329C02B3071D30076500F /* Sources */,
+				0BE329C12B3071D30076500F /* Frameworks */,
+				0BE329C22B3071D30076500F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RedPlanetViewer;
+			packageProductDependencies = (
+				0B25A24E2B30AA17005E72CA /* Root */,
+				0B29F5152B30F8840072D7B6 /* Dependencies */,
+				0B29F5172B30F9010072D7B6 /* DependencyInjection */,
+			);
+			productName = "RedPlanet Viewer";
+			productReference = 0BE329C42B3071D30076500F /* RedPlanetViewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0BE329BC2B3071D30076500F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					0BE329C32B3071D30076500F = {
+						CreatedOnToolsVersion = 15.1;
+					};
+				};
+			};
+			buildConfigurationList = 0BE329BF2B3071D30076500F /* Build configuration list for PBXProject "RedPlanetViewer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0BE329BB2B3071D30076500F;
+			productRefGroup = 0BE329C52B3071D30076500F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0BE329C32B3071D30076500F /* RedPlanetViewer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0BE329C22B3071D30076500F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BE329D42B3071D50076500F /* LaunchScreen.storyboard in Resources */,
+				0BE329D12B3071D50076500F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0BE329C02B3071D30076500F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BE329C82B3071D30076500F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0BE329D22B3071D50076500F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BE329D32B3071D50076500F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0BE329D62B3071D50076500F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0BE329D72B3071D50076500F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0BE329D92B3071D50076500F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87K6AG3XHL;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RedPlanetViewer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RedPlanetViewer;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.olza.RedPlanet-Viewer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0BE329DA2B3071D50076500F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 87K6AG3XHL;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RedPlanetViewer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RedPlanetViewer;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.olza.RedPlanet-Viewer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0BE329BF2B3071D30076500F /* Build configuration list for PBXProject "RedPlanetViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BE329D62B3071D50076500F /* Debug */,
+				0BE329D72B3071D50076500F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BE329D82B3071D50076500F /* Build configuration list for PBXNativeTarget "RedPlanetViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BE329D92B3071D50076500F /* Debug */,
+				0BE329DA2B3071D50076500F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0B25A24E2B30AA17005E72CA /* Root */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Root;
+		};
+		0B29F5152B30F8840072D7B6 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Dependencies;
+		};
+		0B29F5172B30F9010072D7B6 /* DependencyInjection */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DependencyInjection;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 0BE329BC2B3071D30076500F /* Project object */;
+}
