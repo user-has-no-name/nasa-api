@@ -21,12 +21,12 @@
 		0B25A24B2B30A251005E72CA /* UICommons */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UICommons; sourceTree = "<group>"; };
 		0B25A24C2B30A874005E72CA /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
 		0B25A24D2B30A90C005E72CA /* Root */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Root; sourceTree = "<group>"; };
-		0B26A4362B35DBBB00D92502 /* UserDefaultsManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UserDefaultsManager; path = ../../../../Desktop/UserDefaultsManager; sourceTree = "<group>"; };
 		0B29F5132B30F6680072D7B6 /* DependencyInjection */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DependencyInjection; sourceTree = "<group>"; };
 		0B29F5142B30F7760072D7B6 /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Dependencies; sourceTree = "<group>"; };
 		0B3DB1CA2B30836600EC61C9 /* Design */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Design; sourceTree = "<group>"; };
 		0B3DB1CC2B30845500EC61C9 /* Animation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Animation; sourceTree = "<group>"; };
 		0B684BBD2B31472500AE7781 /* RedPlanetViewerApp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RedPlanetViewerApp; sourceTree = "<group>"; };
+		0B8984AA2B3698120076659B /* UserDefaultsManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UserDefaultsManager; sourceTree = "<group>"; };
 		0BBFD5F62B30FED40069EDAC /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
 		0BBFD5F72B310C680069EDAC /* NasaAPIService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NasaAPIService; sourceTree = "<group>"; };
 		0BBFD5F82B313BE60069EDAC /* SecretsManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SecretsManager; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		0B3DB1C92B30834300EC61C9 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				0B26A4362B35DBBB00D92502 /* UserDefaultsManager */,
+				0B8984AA2B3698120076659B /* UserDefaultsManager */,
 				0B1002662B34BF4700F8E32D /* Database */,
 				0B684BBD2B31472500AE7781 /* RedPlanetViewerApp */,
 				0BBFD5F92B31420E0069EDAC /* Commons */,
