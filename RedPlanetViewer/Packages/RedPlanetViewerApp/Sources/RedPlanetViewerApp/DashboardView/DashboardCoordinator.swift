@@ -4,9 +4,14 @@ import Database
 
 public struct DashboardDependency: Dependency {
     public let selectedFilter: Filter
+    public let marsPhotos: MarsPhotos
 
-    public init(selectedFilter: Filter) {
+    public init(
+        selectedFilter: Filter,
+        marsPhotos: MarsPhotos
+    ) {
         self.selectedFilter = selectedFilter
+        self.marsPhotos = marsPhotos
     }
 }
 
@@ -23,18 +28,28 @@ public final class DashboardCoordinator: Coordinator {
     ) {
         self.navigationController = navigationController
         self.dependency = dependency
-        parentCoordinator = self
     }
 
     public func start() {
-        navigateToDashboard(filter: dependency?.selectedFilter ?? .default())
+        navigateToDashboard(
+            filter: dependency?.selectedFilter ?? .default(),
+            photos: dependency?.marsPhotos ?? .init(photos: .init())
+        )
     }
 
-    private func navigateToDashboard(filter: Filter) {
-        let dashboardView: DashboardView = .init(viewModel: .init(selectedFilter: filter, navigation: self))
+    private func navigateToDashboard(
+        filter: Filter,
+        photos: MarsPhotos
+    ) {
+        let dashboardView: DashboardView = .init(viewModel: .init(
+            selectedFilter: filter,
+            photos: photos,
+            navigation: self
+        ))
         let hostingController: HostingController = .init(for: dashboardView)
         navigationController.navigationBar.isHidden = true
         navigationController.pushViewController(hostingController, animated: true)
+        navigationController.makeRootWith(hostingController)
     }
 }
 

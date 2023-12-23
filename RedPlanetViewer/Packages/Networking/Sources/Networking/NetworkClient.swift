@@ -7,24 +7,24 @@ public protocol NetworkClient {
 public extension NetworkClient {
 
     func sendRequest<T: Decodable>(endpoint: Endpoint) async throws -> T {
-        guard let url = endpoint.buildURL() else { throw NetworkError.invalidURL }
+        guard let url: URL = endpoint.buildURL() else { throw NetworkError.invalidURL }
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = endpoint.method.rawValue
         request.allHTTPHeaderFields = endpoint.header
 
-        if let body = endpoint.body {
+        if let body: Dictionary<String, String> = endpoint.body {
             request.httpBody = try JSONSerialization.data(withJSONObject: body)
         }
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
         guard let response = response as? HTTPURLResponse else {
             throw NetworkError.noResponse
         }
 
         switch response.statusCode {
         case 200...299:
-            let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+            let decodedResponse: T = try JSONDecoder().decode(T.self, from: data)
             return decodedResponse
         case 401:
             throw NetworkError.unauthorized

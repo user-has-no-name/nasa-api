@@ -3,17 +3,16 @@ import SwiftUI
 public struct FiltersCardView: View {
     private let model: CardViewModel
 
-    public var body: some View {
-        buildContent()
-    }
-
     public init(
         model: CardViewModel
     ) {
         self.model = model
     }
 
-    #warning("Extract shadow into separate view modifier")
+    public var body: some View {
+        buildContent()
+    }
+
     private func buildContent() -> some View {
         VStack(
             alignment: .leading,

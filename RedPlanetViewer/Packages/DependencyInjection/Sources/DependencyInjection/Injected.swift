@@ -9,7 +9,6 @@ public struct Injected<Dependency> {
             let dependencyName: String = .init(describing: Dependency.self)
             fatalError("No service of type \(dependencyName) registered!")
         }
-
         self.dependency = dependency
     }
 

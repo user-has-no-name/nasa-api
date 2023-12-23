@@ -11,28 +11,6 @@ struct HistoryView: View {
             .onAppear {
                 viewModel.fetchSavedFilters()
             }
-            .confirmationDialog(
-                "Menu Filter",
-                isPresented: $viewModel.showConfirmation,
-                titleVisibility: .visible
-            ) {
-                Group {
-                    Button("Use") {
-                        viewModel.pickFilter()
-                        viewModel.goBackToDashboard()
-                    }
-
-                    Button("Delete", role: .destructive) {
-                        withAnimation {
-                            viewModel.removeFilter()
-                        }
-                    }
-                }
-
-                Button("Cancel", role: .cancel) {
-                    viewModel.showConfirmation = false
-                }
-            }
     }
 
     private func buildContent() -> some View {
@@ -48,6 +26,28 @@ struct HistoryView: View {
             Spacer()
         }
         .background(Color.backgroundOne)
+        .confirmationDialog(
+            "Menu Filter",
+            isPresented: $viewModel.showConfirmation,
+            titleVisibility: .visible
+        ) {
+            Group {
+                Button("Use") {
+                    viewModel.pickFilter()
+                    viewModel.goBackToDashboard()
+                }
+
+                Button("Delete", role: .destructive) {
+                    withAnimation {
+                        viewModel.removeFilter()
+                    }
+                }
+            }
+
+            Button("Cancel", role: .cancel) {
+                viewModel.showConfirmation = false
+            }
+        }
     }
 
     private func buildHeader() -> some View {
@@ -85,7 +85,7 @@ struct HistoryView: View {
                         model: .init(
                             rover: filter.rover.rawValue,
                             camera: filter.camera.rawValue,
-                            date: filter.date.toString(format: .dashboardHeader)
+                            date: filter.date.toString(format: .readable)
                         )
                     )
                     .padding(.horizontal, 20.0)

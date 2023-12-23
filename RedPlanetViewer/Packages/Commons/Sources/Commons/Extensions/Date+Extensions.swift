@@ -2,7 +2,7 @@ import Foundation
 
 public enum DateFormat: String {
     case api = "yyyy-MM-dd"
-    case dashboardHeader = "MMMM d, yyyy"
+    case readable = "MMMM d, yyyy"
 }
 
 public extension Date {

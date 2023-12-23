@@ -1,8 +1,8 @@
 import Commons
 import Database
 import DependencyInjection
-import SwiftUI
 import NasaAPIService
+import SwiftUI
 import SecretsManager
 import UICommons
 import UserDefaultsManager
@@ -14,8 +14,9 @@ public protocol DashboardNavigation: AnyObject {
 public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     @Injected private var nasaService: NasaAPIService
     @Injected private var secretsManager: SecretsManager
+    @Injected private var filterRepo: RealmRepository<FilterEntity>
 
-    private  var navigation: DashboardNavigation?
+    private var navigation: DashboardNavigation?
 
     @Published var showAlert: Bool = false
     @Published var selectedRow: RoverPhoto?
@@ -26,29 +27,27 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
     @Published var bottomSheetType: BottomSheetWithPickerType = .camera
     @Published var toastConfig: Toast?
     @Published var showEmptyState: Bool = false
+    @Published public var loaderConfig: LoaderConfiguration?
 
     @Published var selectedFilter: Filter
+    @Published var photos: MarsPhotos
 
-    @Published var photos: MarsPhotos = .init(photos: .init())
-
-    @Published public var loaderConfig: LoaderConfiguration?
-    @RealmRepositoryWrapper
-    var filterRepo: RealmRepository<FilterEntity>
-    var currentPage: Int = 1
+    var currentPage: Int = 2
 
     public init(
         selectedFilter: Filter,
+        photos: MarsPhotos,
         navigation: DashboardNavigation
     ) {
         self.selectedFilter = selectedFilter
+        self.photos = photos
         self.navigation = navigation
     }
 
-    @MainActor
     func fetchPhotos() async {
-        showLoader()
+        await showLoader()
         do {
-            let fetchedPhotos: MarsPhotos = try await nasaService.getPhotosFromRover(
+            let fetchedPhotos: MarsPhotos = try await nasaService.getPhotos(
                 using: .init(
                     roverName: selectedFilter.rover.abbreviation,
                     date: selectedFilter.date.toString(),
@@ -57,25 +56,34 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
                     apiKey: secretsManager.loadFromSecrets(using: .apiKey) ?? .init()
                 )
             )
-
-            if !fetchedPhotos.photos.isEmpty {
-                photos.photos.append(contentsOf: fetchedPhotos.photos)
-                currentPage += 1
-            } else {
-                guard currentPage != 1 else {
-                    showEmptyState = true
-                    removeLoader()
-                    return
-                }
-
-                toastConfig = .init(style: .info, message: "There is no more images")
-            }
-            removeLoader()
+            await handleFetchedPhotos(fetchedPhotos)
         } catch {
-            toastConfig = .init(style: .error, message: "Error occurred \(error.localizedDescription)")
-            showEmptyState = true
-            removeLoader()
+            await handleFetchError(error)
         }
+    }
+
+    @MainActor
+    private func handleFetchedPhotos(_ fetchedPhotos: MarsPhotos) {
+        if !fetchedPhotos.photos.isEmpty {
+            photos.photos.append(contentsOf: fetchedPhotos.photos)
+            currentPage += 1
+        } else {
+            guard currentPage != 1 else {
+                showEmptyState = true
+                removeLoader()
+                return
+            }
+
+            toastConfig = .init(style: .info, message: "There is no more images")
+        }
+        removeLoader()
+    }
+
+    @MainActor
+    private func handleFetchError(_ error: Error) {
+        toastConfig = .init(style: .error, message: "Error occurred \(error.localizedDescription)")
+        showEmptyState = true
+        removeLoader()
     }
 
     func loadMoreIfNeeded(lastAppearedCard: RoverPhoto) async {
@@ -94,7 +102,10 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
         do {
             lastUsedFilter = try JSONEncoder().encode(selectedFilter)
         } catch {
-            toastConfig = .init(style: .error, message: "Could not save recently used filter. Error: \(error.localizedDescription)")
+            toastConfig = .init(
+                style: .error,
+                message: "Could not save recently used filter. Error: \(error.localizedDescription)"
+            )
         }
     }
 
@@ -138,7 +149,8 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
         )
     }
 
-    func saveFilter() {
+    @MainActor
+    func saveFilter() async {
         do {
             let filterToSave: Filter = .init(
                 id: .init(),
@@ -146,10 +158,16 @@ public final class DashboardViewModel: ObservableObject, LoaderPresentable {
                 camera: selectedFilter.camera,
                 date: selectedFilter.date
             )
-            try filterRepo.insert(item: filterToSave)
-            toastConfig = .init(style: .success, message: "Filter successfully saved")
+            try await filterRepo.insert(item: filterToSave)
+            toastConfig = .init(
+                style: .success,
+                message: "Filter successfully saved"
+            )
         } catch {
-            toastConfig = .init(style: .error, message: "Could not save filters. Error: \(error)")
+            toastConfig = .init(
+                style: .error,
+                message: "Could not save filters. Error: \(error)"
+            )
         }
     }
 

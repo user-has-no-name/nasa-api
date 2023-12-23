@@ -18,15 +18,15 @@ public final class PreloaderCoordinator: Coordinator {
     }
 
     public func start() {
-        let preloaderView = PreloaderView(viewModel: .init(navigation: self))
+        let preloaderView: PreloaderView = .init(viewModel: .init(navigation: self))
         let hostingController: HostingController = .init(for: preloaderView)
         navigationController.pushViewController(hostingController, animated: true)
     }
 
-    private func navigateToDashboard(filter: Filter) {
+    private func navigateToDashboard(with dependency: DashboardDependency) {
         let dashboardCoordinator: DashboardCoordinator = .init(
             navigationController: navigationController,
-            dependency: .init(selectedFilter: filter)
+            dependency: dependency
         )
         dashboardCoordinator.start()
     }
@@ -34,7 +34,7 @@ public final class PreloaderCoordinator: Coordinator {
 
 extension PreloaderCoordinator: PreloaderNavigation {
 
-    public func goToDashboardFlow(filter: Filter) {
-        navigateToDashboard(filter: filter)
+    public func goToDashboardFlow(dependency: DashboardDependency) {
+        navigateToDashboard(with: dependency)
     }
 }

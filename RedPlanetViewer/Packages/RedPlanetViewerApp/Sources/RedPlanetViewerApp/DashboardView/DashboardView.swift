@@ -12,6 +12,17 @@ public struct DashboardView: View {
     }
 
     public var body: some View {
+        buildContent()
+            .onChange(of: viewModel.selectedFilter) { _ in
+                Task {
+                    viewModel.clearResults()
+                    viewModel.saveLastUsedFilter()
+                    await viewModel.fetchPhotos()
+                }
+            }
+    }
+
+    private func buildContent() -> some View {
         ZStack {
             Color.backgroundOne.ignoresSafeArea()
             VStack {
@@ -25,51 +36,46 @@ public struct DashboardView: View {
                 Spacer()
             }
             .ignoresSafeArea(edges: .bottom)
-        }
-        .overlay(alignment: .bottomTrailing) {
-            HistoryButton {
-                viewModel.goToHistoryPage()
+            .overlay(alignment: .bottomTrailing) {
+                HistoryButton {
+                    viewModel.goToHistoryPage()
+                }
+                .padding(.trailing, 20.0)
             }
-            .padding(.trailing, 20.0)
-        }
-        .task {
-            await viewModel.fetchPhotos()
-        }
-        .onChange(of: viewModel.selectedFilter) { _ in
-            Task {
-                viewModel.clearResults()
-                viewModel.saveLastUsedFilter()
-                await viewModel.fetchPhotos()
+            .fullScreenCover(item: $viewModel.selectedRow) { row in
+                FullScreenImageView(
+                    imageURL: .init(string: row.imgSrc),
+                    onCloseTappedAction: {
+                        viewModel.selectedRow = nil
+                    })
+            }
+            .loaderPresenter(
+                config: $viewModel.loaderConfig,
+                forFullScreen: false
+            )
+            .toastView(config: $viewModel.toastConfig)
+            .popupPresenter(config: $viewModel.popupConfig)
+            .bottomSheet(
+                isShowing: $viewModel.showRoverPicker,
+                using: viewModel.roverPickerViewModel()
+            )
+            .bottomSheet(
+                isShowing: $viewModel.showCameraPicker,
+                using: viewModel.cameraPickerViewModel()
+            )
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(
+                    title: Text("Save Filters"),
+                    message: Text("The current filters and the date you have chosen can be saved to the filter history"),
+                    primaryButton: .default(Text("Save")) {
+                        Task {
+                            await viewModel.saveFilter()
+                        }
+                    },
+                    secondaryButton: .cancel()
+                )
             }
         }
-        .fullScreenCover(item: $viewModel.selectedRow) { row in 
-            FullScreenImageView(
-                imageURL: .init(string: row.imgSrc),
-                onCloseTappedAction: {
-                    viewModel.selectedRow = nil
-            })
-        }
-        .loaderPresenter(config: $viewModel.loaderConfig, forFullScreen: false)
-        .toastView(config: $viewModel.toastConfig)
-        .popupPresenter(config: $viewModel.popupConfig)
-        .bottomSheet(
-            isShowing: $viewModel.showRoverPicker,
-            using: viewModel.roverPickerViewModel()
-        )
-        .bottomSheet(
-            isShowing: $viewModel.showCameraPicker,
-            using: viewModel.cameraPickerViewModel()
-        )
-        .alert(isPresented: $viewModel.showAlert) {
-             Alert(
-                 title: Text("Save Filters"),
-                 message: Text("The current filters and the date you have chosen can be saved to the filter history"),
-                 primaryButton: .default(Text("Save")) {
-                     viewModel.saveFilter()
-                 },
-                 secondaryButton: .cancel()
-             )
-         }
     }
 
     private func setupHeader() -> some View {
@@ -83,7 +89,7 @@ public struct DashboardView: View {
                         Text("MARS.CAMERA")
                             .font(.system(size: 34, weight: .bold))
 
-                        Text(viewModel.selectedFilter.date.toString(format: .dashboardHeader))
+                        Text(viewModel.selectedFilter.date.toString(format: .readable))
                             .font(.system(size: 17, weight: .bold))
                     }
                     Spacer()
@@ -143,7 +149,7 @@ public struct DashboardView: View {
                         model: .init(
                             rover: photo.rover.name,
                             camera: photo.camera.fullName,
-                            date: (photo.earthDate.toDate(format: .api) ?? Date()).toString(format: .dashboardHeader)
+                            date: (photo.earthDate.toDate(format: .api) ?? Date()).toString(format: .readable)
                         ),
                         onImageTapAction: {
                             viewModel.selectedRow = photo

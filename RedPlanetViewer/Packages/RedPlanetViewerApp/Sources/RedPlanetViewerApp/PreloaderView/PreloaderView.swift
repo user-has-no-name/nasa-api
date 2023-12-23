@@ -11,8 +11,8 @@ struct PreloaderView: View {
 
     var body: some View {
         buildContent()
-            .onAppear {
-                viewModel.prefetchData()
+            .task {
+                await viewModel.prefetchData()
             }
     }
 

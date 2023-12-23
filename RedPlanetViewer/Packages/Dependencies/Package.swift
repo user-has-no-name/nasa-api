@@ -11,6 +11,7 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(path: "Database"),
         .package(path: "DependencyInjection"),
         .package(path: "NasaAPIService"),
         .package(path: "SecretsManager"),
@@ -19,6 +20,7 @@ let package = Package(
         .target(
             name: "Dependencies",
             dependencies: [
+                .byName(name: "Database"),
                 .byName(name: "DependencyInjection"),
                 .byName(name: "NasaAPIService"),
                 .byName(name: "SecretsManager")

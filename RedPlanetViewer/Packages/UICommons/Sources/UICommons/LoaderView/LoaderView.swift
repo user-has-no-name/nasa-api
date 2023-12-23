@@ -2,6 +2,7 @@ import Animation
 import SwiftUI
 
 public struct LoaderView: View {
+    public init() {}
     public var body: some View {
         VStack {
             LottieView(
@@ -20,9 +21,5 @@ public struct LoaderView: View {
                 .fill(Color.white)
                 .shadow(color: .layerOne.opacity(0.1), radius: 27.5, x: 0, y: 20)
         }
-    }
-
-    public init() {
-
     }
 }

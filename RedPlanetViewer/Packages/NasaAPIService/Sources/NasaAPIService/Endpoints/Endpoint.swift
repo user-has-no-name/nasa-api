@@ -26,13 +26,13 @@ extension RoverPhotosEndpoint: Endpoint {
         case let .photos(configuration):
             var items: Array<URLQueryItem> = .init()
             
-            if let page = configuration.page {
+            if let page: String = configuration.page {
                 items.append(
                     .init(name: "page", value: page)
                 )
             }
 
-            if let camera = configuration.camera, camera.lowercased() != "all" {
+            if let camera: String = configuration.camera, camera.lowercased() != "all" {
                 items.append(
                     .init(name: "camera", value: camera)
                 )

@@ -1,7 +1,6 @@
 import Foundation
 
-public struct Rover: Codable, Identifiable {
-    public let id: Int
+public struct Rover: Codable {
     public let name: String
     public var landingDate: String?
     public var launchDate: String?
@@ -12,7 +11,6 @@ public struct Rover: Codable, Identifiable {
     public var cameras: Array<RoverCamera>?
 
     enum CodingKeys: String, CodingKey {
-        case id
         case name
     }
 }

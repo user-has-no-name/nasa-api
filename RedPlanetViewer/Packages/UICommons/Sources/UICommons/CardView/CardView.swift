@@ -6,10 +6,6 @@ public struct CardView: View {
     private let model: CardViewModel
     private let onImageTapAction: () -> Void
 
-    public var body: some View {
-        buildContent()
-    }
-
     public init(
         imageURL: URL?,
         model: CardViewModel,
@@ -20,7 +16,10 @@ public struct CardView: View {
         self.onImageTapAction = onImageTapAction
     }
 
-    #warning("Extract shadow into separate view modifier")
+    public var body: some View {
+        buildContent()
+    }
+
     private func buildContent() -> some View {
         HStack(
             alignment: .center,

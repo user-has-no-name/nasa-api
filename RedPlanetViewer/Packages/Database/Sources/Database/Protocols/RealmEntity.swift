@@ -11,7 +11,8 @@ public protocol Repository {
     associatedtype EntityType
 
     func getAll() -> Array<EntityType>
+    func getAll(forPage pageNumber: Int, with predicate: NSPredicate) -> Array<EntityType>
     func getItem(by id: UUID) -> EntityType?
-    func insert(item: EntityType) throws
-    func remove(item: EntityType) throws
+    func insert(item: EntityType) async throws
+    func remove(item: EntityType) async throws
 }

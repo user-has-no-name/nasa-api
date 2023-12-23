@@ -43,5 +43,5 @@ public struct HistoryButton: View {
 
 
 #Preview {
-    HistoryButton(onTapAction: { print("Hello world") })
+    HistoryButton(onTapAction: { })
 }

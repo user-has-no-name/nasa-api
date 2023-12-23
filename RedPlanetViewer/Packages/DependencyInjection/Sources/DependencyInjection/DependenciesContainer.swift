@@ -12,13 +12,17 @@ public final class DependenciesContainer {
     private static var dependenciesContainer: Dictionary<String, () -> Any> = .init()
     public static private(set) var cache: Dictionary<String, Any> = .init()
 
-    public static func register<Dependency>(type: Dependency.Type,
-                                            _ factory: @autoclosure @escaping () -> Dependency) {
+    public static func register<Dependency> (
+        type: Dependency.Type,
+        _ factory: @autoclosure @escaping () -> Dependency
+    ) {
         dependenciesContainer[String(describing: type.self)] = factory
     }
 
-    public static func resolve<Dependency>(_ resolveType: DependencyType = .automatic,
-                                           _ type: Dependency.Type) -> Dependency? {
+    public static func resolve<Dependency>(
+        _ resolveType: DependencyType = .automatic,
+        _ type: Dependency.Type
+    ) -> Dependency? {
         let dependencyName: String = .init(describing: type.self)
 
         switch resolveType {

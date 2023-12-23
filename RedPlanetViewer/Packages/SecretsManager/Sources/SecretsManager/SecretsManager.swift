@@ -1,6 +1,5 @@
 import Foundation
 
-#warning("Write unit tests")
 public struct SecretsManager {
     public func loadFromSecrets(
         using key: SecretKey
