@@ -1,4 +1,4 @@
-# nasa-api
+# RedPlanetViewer
 <img src="https://github.com/user-has-no-name/nasa-api/assets/20602338/40ebd3b2-e9c9-4e07-8611-ca1b80dcb406" width="150" height="150">
 
 Додаток для перегляду фотографій з марсоходів використовуючи NASA API
