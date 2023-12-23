@@ -27,4 +27,17 @@ public enum RoverType: String, Pickable, Codable {
             return [.all, .fhaz, .rhaz, .navcam, .pancam, .minites]
         }
     }
+
+    public init?(abbreviation: String) {
+        switch abbreviation.lowercased() {
+        case "curiosity":
+            self = .curiosity
+        case "opportunity":
+            self = .opportunity
+        case "spirit":
+            self = .spirit
+        default:
+            return nil
+        }
+    }
 }

@@ -14,8 +14,8 @@ public struct NasaAPIService: NetworkClient, NasaAPIServiceable {
         let photosFromCache: MarsPhotos = await prefetchDataFromCacheIfExists(
             .init(
                 id: .init(),
-                rover: .init(rawValue: configuration.roverName) ?? .defaultValue,
-                camera: .init(rawValue: configuration.camera ?? .empty) ?? .defaultValue,
+                rover: .init(abbreviation: configuration.roverName) ?? .defaultValue,
+                camera: .init(abbreviation: configuration.camera ?? .empty) ?? .defaultValue,
                 date: configuration.date.toDate(format: .api) ?? .init()
             ),
             page: Int(configuration.page ?? .empty) ?? 0

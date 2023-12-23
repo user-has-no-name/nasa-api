@@ -39,4 +39,20 @@ public enum RoverCameraAbbreviation: String, Pickable, Codable {
             return "all"
         }
     }
+
+    public init?(abbreviation: String) {
+        switch abbreviation.lowercased() {
+        case "fhaz": self = .fhaz
+        case "rhaz": self = .rhaz
+        case "mast": self = .mast
+        case "chemcam": self = .chemcam
+        case "mahli": self = .mahli
+        case "mardi": self = .mardi
+        case "navcam": self = .navcam
+        case "pancam": self = .pancam
+        case "minites": self = .minites
+        case "all": self = .all
+        default: return nil
+        }
+    }
 }
